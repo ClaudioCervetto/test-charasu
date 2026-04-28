@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>チャラス</title>
+<meta name="description" content="チャラス: un'esposizione emozionale che affronta temi sensibili dell'umano per rinquadrarlo e dargli un senso di appartenenza a un luogo sicuro che lo capisce in questo spazio 'espositivo' di temi sensibili.">
+<meta name="keywords" content="Charasu, Anna Chiara Borriello, esposizione emozionale, temi sensibili, luogo sicuro, cinema sperimentale, Vers Libre">
+<meta name="author" content="Anna Chiara Borriello">
+
+<meta property="og:title" content="チャラス">
+<meta property="og:description" content="Un'esposizione emozionale per ritrovare appartenenza in un luogo sicuro che comprende l'umano.">
+<meta property="og:type" content="website">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "チャラス",
+  "author": {
+    "@type": "Person",
+    "name": "Anna Chiara Borriello"
+  },
+  "description": "Un'esposizione emozionale che affronta temi sensibili dell'umano per rinquadrarlo e dargli un senso di appartenenza a un luogo sicuro che lo capisce in questo spazio 'espositivo'.",
+  "about": {
+    "@type": "CreativeWork",
+    "name": "Progettazione della piattaforma Charasu",
+    "abstract": "Uno spazio di narrazione visiva e sonora che utilizza il concetto di Vers Libre per esplorare la fragilità umana e il montaggio cinematografico come strumento di accoglienza e comprensione."
+  }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script>
+    "scrollRestoration" in history && (history.scrollRestoration = "manual"), window.onbeforeunload = function() { window.scrollTo(0, 0) };
+</script>
+<style>
+    :root { --gap: 5px; --bg-color: #000000; }
+    html { scroll-behavior: auto; }
+    * { cursor: none !important; }
+    body, html { margin: 0; padding: 0; max-width: 100%; overscroll-behavior: none; background-color: var(--bg-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; color: #fff; }
+    body.locked { overflow: hidden; }
+    body:not(.locked) { overflow-x: hidden; overflow-y: auto; }
+    
+    #custom-cursor { position: fixed; top: 0; left: 0; width: 24px; height: 24px; background-color: #fff; mix-blend-mode: difference; pointer-events: none; z-index: 9999999999; animation: cursorMorph 1.2s infinite; }
+    @media (pointer: coarse) { #custom-cursor { display: none !important; } * { cursor: auto !important; } }
+    @keyframes cursorMorph {
+        0%, 30% { clip-path: circle(50% at 50% 50%); }
+        33%, 63% { clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%); }
+        66%, 96% { clip-path: polygon(50% 0%, 0% 100%, 100% 100%); }
+        100% { clip-path: circle(50% at 50% 50%); }
+    }
+    @keyframes simpleFadeIn { to { opacity: 1; transform: translateY(0); } }
+    
+    /* --- NUOVO LIVELLO NOISE --- */
+#noise-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999999995;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.2;
+    background-size: 100px; 
+}
+    
+    #video-wrapper { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 70vw; height: 70vh; z-index: 9999999998; display: flex; justify-content: center; align-items: center; transition: all 2.5s cubic-bezier(.85, 0, .05, 1); }
+    #video-wrapper.shrunk { top: 2%; left: 2%; transform: translate(0, 0); width: 55px; height: 55px; }
+    .bg-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none !important; opacity: 0; transition: opacity .3s ease; }
+    .bg-video.active-vid { opacity: 1; }
+    #video-click-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; }
+    
+    #nav-menu { position: fixed; top: 4%; right: 2%; width: 30px; height: 20px; display: flex; flex-direction: column; justify-content: space-between; z-index: 9999999999; opacity: 0; mix-blend-mode: difference; transition: opacity 2.5s cubic-bezier(.85, 0, .05, 1); }
+    #nav-menu.visible { opacity: 1; }
+    #nav-menu span { display: block; height: 3px; width: 100%; background-color: #fff; border-radius: 2px; }
+    
+    .fixed-layer { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 1; pointer-events: none; }
+    .center-title { position: absolute; top: 150%; left: 50%; transform: translate(-50%, -50%); font-size: 10vw; font-family: 'JetBrains Mono', monospace; font-weight: 700; color: #fff; width: 100%; display: flex; justify-content: center; transition: top 2.5s cubic-bezier(.85, 0, .05, 1); }
+    .center-title.centered { top: 50%; }
+    .letter-wrap { display: inline-block; overflow: hidden; line-height: 1.1; padding-bottom: 2px; margin: 0 -.5vw; }
+    .letter { display: inline-block; transform: translateY(100%); opacity: 1; transition: transform .6s cubic-bezier(.22, 1, .36, 1); }
+    .center-title.centered .letter { transform: translateY(0); }
+    .center-title .letter-wrap:nth-child(4) .letter { transition-delay: 1.20s; }
+    .center-title .letter-wrap:nth-child(3) .letter { transition-delay: 1.26s; }
+    .center-title .letter-wrap:nth-child(2) .letter { transition-delay: 1.32s; }
+    .center-title .letter-wrap:first-child .letter { transition-delay: 1.38s; }
+    
+    main { position: relative; z-index: 10; padding: 110vh 0 0 0; opacity: 0; transform: translateY(50px); animation: simpleFadeIn 1.5s ease forwards 5.5s; }
+    
+    .paper-sheets-container { display: flex; flex-direction: column; align-items: center; width: 100%; margin-bottom: 20px; }
+    .paper-sheet { background-color: #fff; color: #000; padding: 45px; width: 85%; max-width: 650px; margin-bottom: -20px; position: relative; font-family: 'JetBrains Mono', monospace; font-size: .85rem; line-height: 1.7; transition: box-shadow .3s ease, border .3s ease; }
+    .shadow-external { box-shadow: 0 35px 70px rgba(0, 0, 0, .25); border: 1px solid transparent; }
+    .shadow-internal { box-shadow: inset 0 0 30px rgba(0, 0, 0, .1); border: 1px solid #d0d0d0; }
+    .no-shadow { border: 1px solid #d0d0d0; box-shadow: none; }
+    .paper-sheet:first-child { transform: translateX(-35px) rotate(-1deg); z-index: 11; }
+    .paper-sheet:nth-child(2) { transform: translateX(25px) translateY(-20px) rotate(1deg); z-index: 12; }
+    .paper-sheet:nth-child(3) { transform: translateX(-15px) translateY(-10px); z-index: 13; margin-bottom: 40vh !important; }
+    .paper-sheet:nth-child(4) { transform: translateX(40px) rotate(-.5deg); z-index: 14; }
+    .paper-sheet:nth-child(5) { transform: translateX(-25px) translateY(5px) rotate(1.5deg); z-index: 15; }
+    .paper-sheet:nth-child(6) { transform: translateX(15px) translateY(-15px) rotate(-1.2deg); z-index: 16; margin-bottom: 40vh !important; }
+    
+    .sheet-row { display: flex; gap: 30px; margin-bottom: 20px; }
+    .sheet-row:last-child { margin-bottom: 0; }
+    .lang-tag { color: #888; font-weight: 700; min-width: 40px; }
+    .text-content { flex-grow: 1; }
+    .quote-text { font-weight: 700; font-size: 1.1rem; text-transform: uppercase; }
+    
+    .fullscreen-sheet { background-color: #fff; width: 100vw; min-height: 100vh; display: flex; justify-content: flex-start; align-items: center; padding: 0 10vw; box-sizing: border-box; position: relative; z-index: 10; margin-bottom: 0; box-shadow: inset 0 0 50px rgba(0, 0, 0, .2); }
+    .giant-text { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 7vw; text-align: left; text-transform: lowercase; line-height: 1.2; width: 100%; max-width: 1600px; color: #000; margin: 0; }
+    .giant-text span { opacity: 0; }
+    
+    /* --- WRAPPER PER LA TRANSIZIONE A SCORRIMENTO --- */
+    #black-phase-wrapper { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 9999900; pointer-events: none; will-change: transform; }
+    
+    #sudden-blackout { position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #000; z-index: 1; display: block; opacity: 0; pointer-events: none; }
+    
+    #shape-container { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2; pointer-events: none; display: flex; justify-content: center; align-items: center; }
+    #morph-shape { width: 0; height: 0; background-color: #000; opacity: 0; }
+    
+    @keyframes jitterShake {
+        0% { transform: translate(3px, 2px) rotate(0); } 10% { transform: translate(-2px, -3px) rotate(-1deg); } 20% { transform: translate(-4px, 1px) rotate(1deg); } 30% { transform: translate(1px, 3px) rotate(0); } 40% { transform: translate(2px, -2px) rotate(1deg); } 50% { transform: translate(-2px, 3px) rotate(-1deg); } 60% { transform: translate(-4px, 2px) rotate(0); } 70% { transform: translate(3px, 1px) rotate(-1deg); } 80% { transform: translate(-2px, -2px) rotate(1deg); } 90% { transform: translate(3px, 3px) rotate(0); } 100% { transform: translate(1px, -3px) rotate(-1deg); }
+    }
+    .is-active { opacity: 1; animation: jitterShake .15s infinite; }
+    .shape-0 { clip-path: polygon(50% 0%, 0% 100%, 100% 100%); }
+    .shape-1 { clip-path: circle(50% at 50% 50%); }
+    .shape-2 { clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%); }
+    
+    #epilogue-container { position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 3; display: none; color: #fff; pointer-events: none; }
+    #epilogue-container.show { display: block; }
+    #white-shape { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100px; height: 100px; background-color: #fff; transition: transform 1.5s cubic-bezier(.22, 1, .36, 1), opacity 1s ease; }
+
+    @keyframes fadeSymbolIn {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+
+    #epilogue-container.show #white-shape {
+        animation: fadeSymbolIn 0.5s ease 0.5s both; 
+    }
+    
+    #epilogue-text-wrapper {
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(calc(-50% + 250px), calc(-30% + 65px));
+        width: 90%; max-width: 420px;
+        height: 12.8em; 
+        overflow: hidden; 
+        opacity: 0;
+        transition: opacity 1.5s ease, transform 1.5s ease;
+        -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+        mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+    }
+    #epilogue-text-inner {
+        font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; line-height: 1.6;
+        transform: translateY(0);
+        transition: transform 0.1s linear; 
+    }
+    
+    #epilogue-container.shifted #white-shape { transform: translate(calc(-50% - 250px), -50%); }
+    #epilogue-container.shifted #epilogue-text-wrapper { opacity: 1; transform: translate(calc(-50% + 120px), calc(-50% + 42px)); }
+    
+    @media (max-width: 768px) {
+        #nav-menu { top: 3.5%; right: 8%; }
+        #video-wrapper.shrunk { left: 8%; }
+        #epilogue-container.shifted #white-shape { transform: translate(-50%, calc(-50% - 180px)); }
+        #epilogue-text-wrapper { max-width: 80%; }
+        #epilogue-container.shifted #epilogue-text-wrapper { opacity: 1; transform: translate(-50%, calc(-50% + 80px)); }
+    }
+
+    .center-title {
+        font-size: 16vw; 
+    }
+
+    /* --- LAYOUT DEL FINALE BIANCO ESTESO --- */
+    #finale-section {
+        position: fixed; top: 100vh; left: 0; width: 100vw; height: 100vh; 
+        overflow-y: auto; overflow-x: hidden; background: #fff; color: #000; 
+        z-index: 9999800; pointer-events: auto; display: block; 
+        will-change: transform; font-family: 'JetBrains Mono', monospace;
+    }
+
+    .finale-content { position: relative; max-width: 1200px; margin: 0 auto; width: 100%; height: 3200px; padding-bottom: 200px; }
+    
+    .f-block { position: absolute; }
+    
+    /* Blocchi originari centrali/destri rimasti inalterati */
+    .f-top { top: 160px; left: 35%; }
+    .f-bg-1 { width: 320px; height: 140px; position: absolute; z-index: 1; top: -30px; left: -30px; }
+    .f-placeholder-img { width: 280px; height: 120px; background: #2a2a2a; position: relative; z-index: 2; border-bottom: 5px solid #ff5500; }
+    .f-caption { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; margin-top: 10px; position: relative; z-index: 3; color: #000; }
+
+    .f-left { top: 450px; left: 20%; max-width: 400px; display: flex; flex-direction: column; }
+    .f-right-top { top: 240px; right: 10%; max-width: 250px; }
+    
+    .f-lang { font-size: 0.75rem; margin-bottom: 8px; font-weight: 700; color: #888; }
+    .f-text { font-size: 0.85rem; line-height: 1.6; color: #000; }
+    .f-text.ru { color: #888; margin-top: 25px; }
+
+    .f-bottom-graphic { top: 990px; left: 10%; width: 400px; height: 400px; }
+    .f-pattern { position: absolute; }
+    .dots-orange { background-image: radial-gradient(#ff5500 40%, transparent 40%); background-size: 16px 16px; }
+    .grid-pink { background-color: #fcebeb; background-image: linear-gradient(rgba(255, 85, 0, 0.25) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 85, 0, 0.25) 1px, transparent 1px); background-size: 12px 12px; }
+    .solid-blue { background-color: #5c6b84; position: absolute; }
+    .solid-orange-circles { background-image: radial-gradient(circle, #ff5500 45%, transparent 45%); background-size: 50px 50px; position: absolute; }
+    
+    .f-g-1 { width: 200px; height: 350px; left: 0; top: 0; z-index: 1; }
+    .f-g-2 { width: 140px; height: 280px; left: 80px; top: 40px; z-index: 2; }
+    .f-g-3 { width: 60px; height: 60px; left: 240px; top: 0; z-index: 3; }
+    .f-g-4 { width: 80px; height: 200px; left: 240px; top: 80px; z-index: 4; }
+    .f-placeholder-img-2 { width: 220px; height: 130px; background: #111; position: absolute; left: 40px; top: 290px; z-index: 5; }
+
+    .f-bottom-right { top: 1120px; left: 45%; max-width: 450px; }
+
+    .f-new-img { top: 1600px; right: 15%; }
+    .f-new-img-box { width: 340px; height: 180px; background: #1a1a1a; position: relative; z-index: 2; border-top: 5px solid #5c6b84; }
+    .f-new-pattern-1 { width: 200px; height: 200px; left: -40px; top: -40px; z-index: 1; }
+    
+    /* --- NUOVE POSIZIONI (Estremamente a sinistra, anti-taglio) --- */
+    .f-new-text-left { top: 1800px; left: 3%; max-width: 420px; }
+    .f-new-text-right { top: 2150px; left: 12%; max-width: 380px; }
+    
+    .f-new-graphic { top: 2450px; left: 2%; width: 450px; height: 350px; }
+    .f-g-5 { width: 150px; height: 150px; left: 0; top: 100px; z-index: 1; border-radius: 50%; }
+    .f-g-6 { width: 300px; height: 100px; left: 100px; top: 0; z-index: 2; }
+    .f-g-7 { width: 250px; height: 200px; left: 180px; top: 60px; z-index: 3; background: #111; }
+
+    /* Rimosso il translateX per evitare l'uscita schermo in caso di ridimensionamento fluido desktop */
+    .f-new-footer { top: 3000px; left: 5%; text-align: left; transform: none; max-width: 400px; }
+
+    /* Manteniamo le logiche responsive per i dispositivi mobili */
+    @media (max-width: 768px) {
+        .f-top { left: 10%; top: 100px; } 
+        .f-left { left: 10%; top: 350px; width: 80%; }
+        .f-right-top { display: none; }
+        .f-bottom-graphic { top: 850px; left: 0; transform: scale(0.7); transform-origin: top left; }
+        .f-bottom-right { top: 1200px; left: 10%; width: 80%; }
+        
+        .f-new-img { top: 1600px; left: 10%; transform: scale(0.8); transform-origin: left; right: auto; }
+        
+        .f-new-text-left { top: 1850px; left: 10%; width: 80%; }
+        .f-new-text-right { top: 2250px; left: 10%; width: 80%; }
+        
+        .f-new-graphic { top: 2650px; left: -20px; transform: scale(0.6); transform-origin: top left; }
+        /* Reimpostiamo il translateX su mobile per ritrovare il centraggio automatico corretto */
+        .f-new-footer { top: 2950px; left: 50%; transform: translateX(-50%); text-align: center; width: 80%; }
+        .finale-content { height: 3200px; }
+    }
+</style>
+</head>
+<body class="locked">
+<div id="custom-cursor"></div>
+<div id="noise-layer"></div>
+
+<div id="video-wrapper">
+    <video src="white.webm" class="bg-video active-vid" id="vid-white" autoplay loop muted playsinline disablePictureInPicture disableRemotePlayback></video>
+    <video src="black.webm" class="bg-video" id="vid-black" autoplay loop muted playsinline disablePictureInPicture disableRemotePlayback></video>
+    <div id="video-click-layer"></div>
+</div>
+
+<div id="nav-menu">
+    <span></span><span></span><span></span>
+</div>
+
+<div class="fixed-layer">
+    <div class="center-title">
+        <span class="letter-wrap"><span class="letter">チ</span></span>
+        <span class="letter-wrap"><span class="letter">ャ</span></span>
+        <span class="letter-wrap"><span class="letter">ラ</span></span>
+        <span class="letter-wrap"><span class="letter">ス</span></span>
+    </div>
+</div>
+
+<main>
+<div class="paper-sheets-container">
+    <div class="paper-sheet shadow-external">
+        <div class="sheet-row">
+            <div class="lang-tag">[EN]</div>
+            <div class="text-content">Her films resist categorization. She does not seek clarity, nor does she attempt to satisfy the viewer's desire for a happy ending. It is difficult to define her directorial work, yet questions of cinematic direction, creative approaches, and her way of thinking have long occupied me.</div>
+        </div>
+        <div class="sheet-row">
+            <div class="lang-tag">[RU]</div>
+            <div class="text-content" style="color:#666">Ее фильмы не поддаются категоризации. Она не старается быть понятной и не пытается удовлетворить желание зрителя счастливым концом. Сложно давать определения ее режиссерской работе...</div>
+        </div>
+    </div>
+    <div class="paper-sheet shadow-external">
+        <div class="sheet-row">
+            <div class="lang-tag">[QUOTE]</div>
+            <div class="text-content quote-text">THESE INJECTIONS DON'T HURT ME. I DON'T CARE WHAT THE STUDIO DIRECTOR SAYS. I FEEL BAD, BUT I'M A VERY HAPPY PERSON.</div>
+        </div>
+    </div>
+    <div class="paper-sheet shadow-external">
+        <div class="sheet-row">
+            <div class="lang-tag">[EN]</div>
+            <div class="text-content">In 1990, The Asthenic Syndrome received the Grand Prix at the Berlin International Film Festival. The tragicomedy The Tuner was screened at the Venice Film Festival. Her films were repeatedly awarded prizes at Kinotavr and Nika.</div>
+        </div>
+    </div>
+    <div class="paper-sheet shadow-external">
+        <div class="sheet-row">
+            <div class="lang-tag">[FR]</div>
+            <div class="text-content" style="color:#444">Ses premières œuvres, comme "Brèves rencontres" et "Les Longs Adieux", ont été interdites par la censure soviétique pour leur prétendue "complexité formelle" et leur refus du réalisme socialiste imposé.</div>
+        </div>
+        <div class="sheet-row">
+            <div class="lang-tag">[EN]</div>
+            <div class="text-content">Her early works, such as "Brief Encounters" and "The Long Farewell," were banned by Soviet censorship for their alleged "formal complexity" and their rejection of imposed socialist realism.</div>
+        </div>
+    </div>
+    <div class="paper-sheet shadow-external">
+        <div class="sheet-row">
+            <div class="lang-tag">[NOTE]</div>
+            <div class="text-content">The recurring use of non-professional actors mixed with seasoned theater veterans creates an unsettling, almost hypnotic dissonance in the dialogue delivery. Repetition becomes an auditory motif.</div>
+        </div>
+    </div>
+    <div class="paper-sheet shadow-external">
+        <div class="sheet-row">
+            <div class="lang-tag">[QUOTE]</div>
+            <div class="text-content quote-text">I DON'T LIKE TO EXPLAIN MY FILMS. IF THEY CAN BE EXPLAINED IN WORDS, THERE WAS NO NEED TO MAKE A FILM ABOUT THEM.</div>
+        </div>
+    </div>
+</div>
+<div class="fullscreen-sheet" id="typing-zone">
+    <p class="giant-text">a single word is unveiled only with your cursor's journey</p>
+</div>
+</main>
+
+<div id="black-phase-wrapper">
+    <div id="sudden-blackout"></div>
+    <div id="shape-container">
+        <div id="morph-shape"></div>
+    </div>
+    <div id="epilogue-container">
+        <div id="white-shape" class="shape-0"></div>
+        <div id="epilogue-text-wrapper">
+            <div id="epilogue-text-inner">
+                LA FORMA DIVORA LA CORNICE.<br><br>
+                Ciò che restringe l'inquadratura si frammenta, lasciando spazio unicamente all'astrazione.<br><br>
+                Il Vers Libre non ammette confini.<br><br>
+                La linearità si spezza. Ogni inquadratura diventa un frammento autonomo, una sillaba visiva.<br><br>
+                Il montaggio non collega, ma scontra. L'intenzione autoriale svanisce dietro l'urto.<br><br>
+                La ripetizione diventa un motivo uditivo. La realtà è mistificata. Fine del formato.<br><br>
+                Non c'è consolazione nella logica temporale. Il caos viene orchestrato con precisione geometrica.<br><br>
+                I dialoghi si accavallano fino a diventare rumore bianco, seguiti da un silenzio assoluto e disturbante.<br><br>
+                Il personaggio non è più il centro dell'universo narrativo, ma solo un elemento di disturbo in una partitura discordante.<br><br>
+                Questa è la disintegrazione del cinema classico. Un respiro trattenuto troppo a lungo.<br><br>
+                L'osservatore è costretto a ricostruire il senso, o a perdersi definitivamente nell'opera.
+            </div>
+        </div>
+    </div>
+</div>
+
+<section id="finale-section">
+    <div class="finale-content">
+        <div class="f-block f-top">
+            <div class="f-pattern dots-orange f-bg-1"></div>
+            <div class="f-placeholder-img"></div>
+            <div class="f-caption">THE SENTIMENTAL POLICEMAN, 1992</div>
+        </div>
+
+        <div class="f-block f-left">
+            <div class="f-lang">(EN)</div>
+            <div class="f-text">She seems to strive toward creating a new type of connections between events and objects based on external formal similarities, using linguistic games to dismantle the accepted moralities of spectatorship and the traditional image of the author, through a phonetic and rhythmic treatment of intonation and speech.</div>
+
+            <div class="f-text ru">
+                <span class="f-lang">(RU)</span><br><br>
+                Она будто стремится создать новый тип связей между событиями, предметами на основе внешних формальных подобий, с помощью языковых игр, разрушая общепринятые морали зрительского вкуса и традиционного образа автора, через эпатажное обращение с интонациями и речью.
+            </div>
+        </div>
+
+        <div class="f-block f-right-top">
+            <div class="f-text" style="color: #888; font-size: 0.8rem; text-align: right;">Снимаю быстро, много времени занимает монтаж и озвучка, потому что у меня есть такая тенденция, чтобы быстро говорили, часто одновременно говорили, а это тянет за собой множество пленок, каждый актер записывается на отдельную пленку, а потом сводится...</div>
+        </div>
+
+        <div class="f-block f-bottom-graphic">
+            <div class="f-pattern dots-orange f-g-1"></div>
+            <div class="f-pattern grid-pink f-g-2"></div>
+            <div class="f-shape solid-blue f-g-3"></div>
+            <div class="f-shape solid-orange-circles f-g-4"></div>
+            <div class="f-placeholder-img-2"></div>
+        </div>
+
+        <div class="f-block f-bottom-right">
+            <div class="f-lang">(EN)</div>
+            <div class="f-text">Muratova openly mystifies and poeticizes reality, thereby holding us even more firmly within a conditional world of rules – where, in fact, none exist. Actors interrupt one another, speak simultaneously, shout, or speak barely audibly. In Muratova's world, there is only one rule: boundless freedom.</div>
+
+            <div class="f-text ru">
+                <span class="f-lang">(RU)</span><br><br>
+                Муратова откровенно мистифицирует и поэтизирует реальность, тем самым еще крепче удерживая в условном мире правил, где на самом деле их нет. Актеры могут перебивать друг друга или говорить одновременно...
+            </div>
+        </div>
+
+        <div class="f-block f-new-img">
+            <div class="f-pattern grid-pink f-new-pattern-1"></div>
+            <div class="f-new-img-box"></div>
+        </div>
+
+        <div class="f-block f-new-text-left">
+            <div class="f-lang">(EN)</div>
+            <div class="f-text">Her cinema is an architectural construct of emotional chaos. People walk out of frame, line the camera lingers on an empty doorway. A profound silence follows a deafening argument. What remains is an uncompromising vision, a rejection of the synthetic gloss of traditional filmmaking.</div>
+            
+            <div class="f-text ru">
+                <span class="f-lang">(RU)</span><br><br>
+                Ее кино — это архитектурная конструкция эмоционального хаоса. Люди выходят из кадра, камера задерживается на пустом дверном проеме. За оглушительным спором следует глубокая тишина. Остается бескомпромиссное видение...
+            </div>
+        </div>
+
+        <div class="f-block f-new-text-right">
+            <div class="f-lang">(NOTE)</div>
+            <div class="f-text" style="font-weight: 700; font-size: 0.95rem; text-transform: uppercase;">Replacing it with something raw, irritating, yet undeniably alive. A cinematic organism that breathes on its own terms.</div>
+        </div>
+
+        <div class="f-block f-new-graphic">
+            <div class="f-shape solid-orange-circles f-g-5"></div>
+            <div class="f-pattern dots-orange f-g-6"></div>
+            <div class="f-g-7"></div>
+        </div>
+
+        <div class="f-block f-new-footer">
+            <div class="f-caption" style="font-size: 0.8rem;">THE ASTHENIC SYNDROME, 1989</div>
+        </div>
+
+    </div>
+</section>
+
+<script>
+const AudioContext = window.AudioContext || window.webkitAudioContext, audioCtx = new AudioContext, audioBuffers = {}, typingSounds = ["a1.mp3", "a2.mp3", "a3.mp3"];
+typingSounds.forEach((e => { fetch(e).then((e => e.arrayBuffer())).then((e => audioCtx.decodeAudioData(e))).then((t => { audioBuffers[e] = t })).catch((e => console.log("Errore caricamento audio:", e))) }));
+
+const unlockAudio = () => { "suspended" === audioCtx.state && audioCtx.resume(), window.removeEventListener("click", unlockAudio), window.removeEventListener("touchstart", unlockAudio), window.removeEventListener("keydown", unlockAudio) };
+
+function playTypingSound() {
+    "suspended" === audioCtx.state && audioCtx.resume();
+    const e = typingSounds[Math.floor(Math.random() * typingSounds.length)], t = audioBuffers[e];
+    if (t) { const e = audioCtx.createBufferSource(); e.buffer = t; const o = audioCtx.createGain(); o.gain.value = .5, e.connect(o), o.connect(audioCtx.destination), e.start(0) }
+}
+
+window.addEventListener("click", unlockAudio), window.addEventListener("touchstart", unlockAudio, { passive: !0 }), window.addEventListener("keydown", unlockAudio);
+
+const customCursor = document.getElementById("custom-cursor");
+
+function updateVideoColor() {
+    const e = document.getElementById("video-wrapper");
+    if (!e.classList.contains("shrunk")) return;
+    const t = e.getBoundingClientRect(), o = t.top + t.height / 2;
+    let n = !1;
+    document.querySelectorAll(".paper-sheet, .fullscreen-sheet, #finale-section").forEach((e => { 
+        const t = e.getBoundingClientRect(); 
+        o >= t.top && o <= t.bottom && (n = !0) 
+    }));
+    
+    const s = document.getElementById("sudden-blackout");
+    if (s && parseFloat(window.getComputedStyle(s).opacity) > .5) {
+        const sRect = s.getBoundingClientRect();
+        if (o >= sRect.top && o <= sRect.bottom) {
+            n = !1;
+        }
+    }
+    n ? (document.getElementById("vid-white").classList.remove("active-vid"), document.getElementById("vid-black").classList.add("active-vid")) : (document.getElementById("vid-black").classList.remove("active-vid"), document.getElementById("vid-white").classList.add("active-vid"))
+}
+
+window.addEventListener("mousemove", (e => { customCursor.style.transform = `translate(${e.clientX - 12}px, ${e.clientY - 12}px)` }));
+window.scrollTo(0, 0);
+window.addEventListener("scroll", updateVideoColor, { passive: !0 });
+document.getElementById('finale-section').addEventListener('scroll', updateVideoColor, { passive: !0 });
+window.addEventListener("resize", updateVideoColor, { passive: !0 });
+
+setTimeout((() => { document.getElementById("video-wrapper").classList.add("shrunk"), document.querySelector(".center-title").classList.add("centered"), document.getElementById("nav-menu").classList.add("visible"), updateVideoColor() }), 3e3);
+setTimeout((() => { document.body.classList.remove("locked"), window.scrollTo(0, 0) }), 5500);
+
+// Logica per le ombre dei paper-sheets, controllata dal tasto "S"
+const sheets = document.querySelectorAll(".paper-sheets-container .paper-sheet"), shadowClasses = ["shadow-external", "shadow-internal", "no-shadow"];
+let currentShadowIndex = 0;
+document.addEventListener("keydown", (e => {
+    "s" === e.key.toLowerCase() && (currentShadowIndex = (currentShadowIndex + 1) % shadowClasses.length, sheets.forEach((e => { e.classList.remove(...shadowClasses), e.classList.add(shadowClasses[currentShadowIndex]) })))
+}));
+
+document.addEventListener("DOMContentLoaded", (() => {
+    setTimeout((() => window.scrollTo(0, 0)), 10);
+    const e = document.querySelector(".giant-text"), t = document.getElementById("typing-zone"), o = document.getElementById("morph-shape"), n = document.getElementById("sudden-blackout"), s = document.getElementById("epilogue-container"), i = document.getElementById("white-shape"), d = document.getElementById("video-wrapper"), a = document.getElementById("video-click-layer");
+    if (!(e && t && o && n)) return;
+    
+    const l = e.innerText;
+    e.innerText = "";
+    for (let t = 0; t < l.length; t++) { const o = document.createElement("span"); o.innerText = l[t], e.appendChild(o) }
+    
+    const c = e.querySelectorAll("span");
+    let r = 0, u = !1, h = 0, m = 0, p = 0, w = 0, y = !1, v = null;
+    let f = [];
+    for (let e = 0; e < c.length; e++) f.push(e);
+    for (let e = f.length - 1; e > 0; e--) { const t = Math.floor(Math.random() * (e + 1)); [f[e], f[t]] = [f[t], f[e]] }
+    
+    let epilogueScroll = 0;
+    let finaleRevealProgress = 0;
+
+    function updateFinaleTransform() {
+        const blackWrapper = document.getElementById('black-phase-wrapper');
+        const finaleSection = document.getElementById('finale-section');
+        if(blackWrapper) blackWrapper.style.transform = `translateY(-${finaleRevealProgress}px)`;
+        if(finaleSection) finaleSection.style.transform = `translateY(-${finaleRevealProgress}px)`;
+        updateVideoColor();
+    }
+
+    a.addEventListener("click", (function() { d.classList.contains("shrunk") && (
+        window.scrollTo({ top: 0, behavior: "smooth" }), h = 1, p = 0, y = !1, clearTimeout(v),
+        o.style.opacity = "0", o.className = "", o.style.width = "0px", o.style.height = "0px",
+        n.style.opacity = "0", s.classList.remove("show"), s.classList.remove("shifted"),
+        c.forEach((e => e.style.opacity = "1")),
+        finaleRevealProgress = 0, updateFinaleTransform(),
+        epilogueScroll = 0, document.getElementById('epilogue-text-inner').style.transform = `translateY(0)`,
+        document.getElementById('finale-section').scrollTop = 0, updateVideoColor()
+    ) }));
+    
+    let g = 0;
+    function L() { r < c.length && (c[r].style.opacity = "1", playTypingSound(), r++, r === c.length && (u = !0, h = 1, o.style.width = "1px", o.style.height = "1px", o.className = "shape-0 is-active", o.style.opacity = "1")) }
+    
+    function E(e) {
+        const t = 2 * Math.hypot(window.innerWidth, window.innerHeight), i = .12 * t;
+        if (2 === p) return void (e < -2 && (p = 1, s.classList.remove("shifted")));
+        if (1 === p) return e > 2 ? Date.now() - w > 1e3 && (p = 2, s.classList.add("shifted")) : e < -2 && (p = 0, y = !1, s.classList.remove("show"), s.classList.remove("shifted"), clearTimeout(v), h = i - 10), void updateVideoColor();
+        let d = h;
+        if (h += .05 * e, h <= 1) return h = 1, o.style.opacity = "0", o.className = "", n.style.opacity = "0", s.classList.remove("show"), s.classList.remove("shifted"), y = !1, c.forEach((e => e.style.opacity = "1")), d > 1 && (m = Date.now()), void updateVideoColor();
+        o.style.opacity = "1";
+        let a = h / t / .12;
+        if (a > 1 && (a = 1), a < 0 && (a = 0), n.style.opacity = a.toString(), h >= i) h = i, n.style.opacity = "1", y || (y = !0, p = 1, w = Date.now(), s.classList.add("show"), s.classList.remove("shifted"), v = setTimeout((() => { p = 2, s.classList.add("shifted") }), 1e3));
+        else {
+            let e = h / i, t = Math.floor(e * c.length); t > c.length && (t = c.length), t < 0 && (t = 0);
+            for (let e = 0; e < c.length; e++) c[f[e]].style.opacity = e < t ? "0" : "1";
+            o.style.width = h + "px", o.style.height = h + "px";
+            let n = Math.floor(h / 40) % 3; o.className = "shape-" + n + " is-active"
+        }
+        updateVideoColor()
+    }
+    
+    setInterval((() => { y && (g = (g + 1) % 3, i.className = "shape-" + g) }), 400);
+    
+    const C = () => Math.ceil(window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 50;
+    let x = 0;
+    
+    window.addEventListener("wheel", (e => {
+        const t = C(), finaleSection = document.getElementById('finale-section'), maxFinaleReveal = window.innerHeight;
+        
+        if (finaleRevealProgress >= maxFinaleReveal) {
+            if (finaleSection.scrollTop <= 0 && e.deltaY < 0) {
+                e.preventDefault(); finaleRevealProgress += e.deltaY; updateFinaleTransform();
+            } else { return; }
+        } else if (finaleRevealProgress > 0) {
+            e.preventDefault(); finaleRevealProgress += e.deltaY;
+            if (finaleRevealProgress > maxFinaleReveal) finaleRevealProgress = maxFinaleReveal;
+            if (finaleRevealProgress < 0) finaleRevealProgress = 0;
+            updateFinaleTransform();
+        } else if (u) {
+            if (y && p === 2) {
+                e.preventDefault();
+                const inner = document.getElementById('epilogue-text-inner'), wrapper = document.getElementById('epilogue-text-wrapper');
+                const maxScroll = Math.max(0, inner.scrollHeight - wrapper.clientHeight);
+
+                if (e.deltaY > 0) {
+                    if (epilogueScroll >= maxScroll) {
+                        finaleRevealProgress += e.deltaY;
+                        if (finaleRevealProgress > maxFinaleReveal) finaleRevealProgress = maxFinaleReveal;
+                        updateFinaleTransform();
+                    } else {
+                        epilogueScroll += Math.min(20, e.deltaY * 0.5);
+                        if (epilogueScroll > maxScroll) epilogueScroll = maxScroll;
+                        inner.style.transform = `translateY(-${epilogueScroll}px)`;
+                    }
+                } else {
+                    epilogueScroll += Math.max(-20, e.deltaY * 0.5);
+                    if (epilogueScroll <= 0) { epilogueScroll = 0; if (e.deltaY < -10) E(e.deltaY); }
+                    inner.style.transform = `translateY(-${epilogueScroll}px)`;
+                }
+            } else if (h > 1 || y) { e.preventDefault(); E(Math.max(-50, Math.min(50, e.deltaY)));
+            } else if (t && e.deltaY > 0) { e.preventDefault(); E(Math.max(-50, Math.min(50, e.deltaY)));
+            } else if (e.deltaY < 0) {
+                if (Date.now() - m < 600) return void e.preventDefault();
+                o.style.opacity = "0", o.className = "", n.style.opacity = "0", updateVideoColor()
+            }
+        } else t && e.deltaY > 0 && (e.preventDefault(), x++, x >= 2 && (L(), x = 0))
+    }), { passive: !1 });
+    
+    let k = null, B = 0;
+    window.addEventListener("touchstart", (e => { k = e.touches[0].clientY }), { passive: !1 });
+    window.addEventListener("touchmove", (e => {
+        if (null === k) return;
+        const t = e.touches[0].clientY, s = k - t, i = C(), finaleSection = document.getElementById('finale-section'), maxFinaleReveal = window.innerHeight;
+        
+        if (finaleRevealProgress >= maxFinaleReveal) {
+            if (finaleSection.scrollTop <= 0 && s < 0) {
+                e.preventDefault(); finaleRevealProgress += s; updateFinaleTransform(); k = t;
+            } else { k = t; return; }
+        } else if (finaleRevealProgress > 0) {
+            e.preventDefault(); finaleRevealProgress += s;
+            if (finaleRevealProgress > maxFinaleReveal) finaleRevealProgress = maxFinaleReveal;
+            if (finaleRevealProgress < 0) finaleRevealProgress = 0;
+            updateFinaleTransform(); k = t;
+        } else if (u) {
+            let d = !1;
+            if (y && p === 2) {
+                d = !0;
+                const inner = document.getElementById('epilogue-text-inner'), wrapper = document.getElementById('epilogue-text-wrapper');
+                const maxScroll = Math.max(0, inner.scrollHeight - wrapper.clientHeight);
+
+                if (s > 0) {
+                    if (epilogueScroll >= maxScroll) {
+                        finaleRevealProgress += s;
+                        if(finaleRevealProgress > maxFinaleReveal) finaleRevealProgress = maxFinaleReveal;
+                        updateFinaleTransform();
+                    } else {
+                        epilogueScroll += s * 0.8;
+                        if (epilogueScroll > maxScroll) epilogueScroll = maxScroll;
+                        inner.style.transform = `translateY(-${epilogueScroll}px)`;
+                    }
+                } else {
+                    epilogueScroll += s * 0.8;
+                    if (epilogueScroll <= 0) { epilogueScroll = 0; if (s < -5) E(s * 1.5); }
+                    inner.style.transform = `translateY(-${epilogueScroll}px)`;
+                }
+                k = t;
+            } else if (h > 1 || y || (i && s > 0)) { d = !0; Math.abs(s) > 5 && (E(1.6 * s), k = t);
+            } else if (s < 0) { Date.now() - m < 600 ? d = !0 : (o.style.opacity = "0", o.className = "", n.style.opacity = "0", updateVideoColor()); }
+            if (d) e.preventDefault();
+        } else i && s > 0 && (d = !0, B += s, B >= 10 && (L(), B = 0, k = t));
+    }), { passive: !1 });
+}));
+</script>
+</body>
+</html>
