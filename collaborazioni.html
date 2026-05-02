@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="color-scheme" content="only light">
+<meta name="theme-color" content="#ffffff">
+<title>チャラス - Collaborazioni</title>
+<meta name="description" content="Le collaborazioni e i partner del progetto Charasu. Un'esposizione emozionale che affronta temi sensibili dell'umano.">
+<meta name="keywords" content="Charasu, Anna Chiara Borriello, esposizione emozionale, temi sensibili, luogo sicuro, cinema sperimentale, Vers Libre">
+<meta name="author" content="Anna Chiara Borriello">
+<meta property="og:title" content="チャラス - Collaborazioni">
+<meta property="og:description" content="Le collaborazioni e i partner del progetto Charasu.">
+<meta property="og:image" content="https://claudiocervetto.github.io/test-charasu/anteprima.png">
+<meta property="og:url" content="https://claudiocervetto.github.io/test-charasu/collaborazioni.html">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "チャラス - Collaborazioni",
+  "author": {
+    "@type": "Person",
+    "name": "Anna Chiara Borriello"
+  },
+  "description": "Un'esposizione emozionale che affronta temi sensibili dell'umano per rinquadrarlo e dargli un senso di appartenenza a un luogo sicuro che lo capisce in questo spazio 'espositivo'.",
+  "about": {
+    "@type": "CreativeWork",
+    "name": "Progettazione della piattaforma Charasu",
+    "abstract": "Uno spazio di narrazione visiva e sonora che utilizza il concetto di Vers Libre per esplorare la fragilità umana e il montaggio cinematografico come strumento di accoglienza e comprensione."
+  }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+    --bg-color: transparent;
+    color-scheme: only light;
+    forced-color-adjust: none;
+}
+*{cursor:none!important;box-sizing:border-box}
+
+body, html {
+    margin:0;padding:0;
+    /* Trasparenza assoluta per l'IMG bianca */
+    background: transparent !important;
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+    font-family:'JetBrains Mono',monospace;overflow:hidden;width:100vw;height:100vh;height:100dvh;overscroll-behavior:none
+}
+#menu-overlay {
+    position:fixed;top:0;left:0;width:100vw;height:100vh;
+    background-color: rgba(255,255,255,.95) !important;
+    z-index:2147483645;display:flex;justify-content:center;align-items:center;opacity:0;pointer-events:none;transition:opacity .5s ease
+}
+#menu-overlay nav a {
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+    text-decoration:none;font-size:2.5vw;font-weight:700;text-transform:uppercase;letter-spacing:2px;transition:color .3s ease,transform .3s ease
+}
+#menu-overlay nav a:hover {
+    color: #888888 !important;
+    -webkit-text-fill-color: #888888 !important;
+    transform:scale(1.05)
+}
+.c-name {
+    color: #333333 !important;
+    -webkit-text-fill-color: #333333 !important;
+    font-size:min(1.2rem, 2.5vh);font-weight:700;margin:0;text-transform:uppercase;letter-spacing:1px;transition:color .4s ease,transform .6s ease
+}
+.collab-row.active .c-name {
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+    transform:translateY(-5px)
+}
+.c-desc {
+    color: #666666 !important;
+    -webkit-text-fill-color: #666666 !important;
+    font-size:min(.85rem, 1.8vh);max-width:550px;margin:0;line-height:1.5;max-height:0;opacity:0;transform:translateY(10px);transition:max-height .6s cubic-bezier(.25, 1, .15, 1),opacity .4s ease,transform .5s ease
+}
+.c-year {
+    color: #aaaaaa !important;
+    -webkit-text-fill-color: #aaaaaa !important;
+    font-size:min(.9rem, 2vh);font-weight:700;margin:0;transition:color .4s ease
+}
+.collab-row.active .c-year {
+    color: #444444 !important;
+    -webkit-text-fill-color: #444444 !important;
+}
+.collab-row {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15) !important;
+}
+.table-container {
+    border-top: 1px solid rgba(0, 0, 0, 0.15) !important;
+}
+.collab-row.active {
+    flex:var(--active-flex,4.5);
+    background-color: rgba(0,0,0,.03) !important;
+}
+
+#custom-cursor{position:fixed;top:0;left:0;width:24px;height:24px;background-color:#fff;mix-blend-mode:difference;pointer-events:none;z-index:2147483647;animation:cursorMorph 1.2s infinite;will-change:transform,clip-path;transform-style:preserve-3d;-webkit-backface-visibility:hidden;backface-visibility:hidden}@media (pointer:coarse){#custom-cursor{display:none!important}*{cursor:auto!important}}@keyframes cursorMorph{0%,32.9%{clip-path:circle(48% at 50% 50%)}33%,65.9%{clip-path:polygon(2% 2%,98% 2%,98% 98%,2% 98%)}66%,99.9%{clip-path:polygon(50% 2%,2% 98%,98% 98%)}100%{clip-path:circle(48% at 50% 50%)}}#noise-layer{position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999999990;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");opacity:.15;filter:invert(1);background-size:100px}#video-wrapper.shrunk{position:fixed;top:2%;left:2%;width:55px;height:55px;z-index:9999999995;display:flex;justify-content:center;align-items:center;text-decoration:none}.bg-video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:contain;opacity:1;pointer-events:none}#video-click-layer{position:absolute;top:0;left:0;width:100%;height:100%;z-index:10}#nav-menu{position:fixed;top:4%;right:2%;width:30px;height:20px;display:flex;flex-direction:column;justify-content:space-between;z-index:2147483646;mix-blend-mode:difference}#nav-menu span{display:block;height:3px;width:100%;background-color:#fff;border-radius:2px;transition:transform .4s ease,opacity .4s ease}#nav-menu.open span:first-child{transform:translateY(8.5px) rotate(45deg)}#nav-menu.open span:nth-child(2){opacity:0}#nav-menu.open span:nth-child(3){transform:translateY(-8.5px) rotate(-45deg)}#menu-overlay.open{opacity:1;pointer-events:auto}#menu-overlay nav{display:flex;flex-direction:column;text-align:center;gap:40px}.table-container{position:absolute;top:10vh;left:5vw;width:90vw;height:85vh;display:flex;flex-direction:column;z-index:5}.collab-row{flex:1;display:flex;align-items:center;transition:flex .6s cubic-bezier(.25, 1, .15, 1),background-color .4s ease,opacity .8s ease,transform .8s ease;overflow:hidden;position:relative;opacity:0;transform:translateY(30px)}.collab-row.is-visible{opacity:1;transform:translateY(0)}.c-left{width:20%;display:flex;justify-content:flex-start;align-items:center}.c-img{width:min(40px,3vh);height:min(40px,3vh);object-fit:cover;filter:grayscale(100%);transition:width .6s cubic-bezier(.25, 1, .15, 1),height .6s cubic-bezier(.25, 1, .15, 1),filter .6s ease,box-shadow .3s ease,padding .3s ease,border .3s ease}.collab-row.active .c-img{width:min(150px,12vh);height:min(150px,12vh)}.shadow-external{box-shadow:0 15px 35px rgba(0,0,0,.15);border:1px solid transparent}.shadow-internal{box-shadow:inset 0 0 20px rgba(0,0,0,.1);border:1px solid #ddd;padding:5px}.no-shadow{box-shadow:none;border:none;padding:0}.c-center{width:60%;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;text-align:left;height:100%;padding:0 2vw}.collab-row.active .c-desc{max-height:400px;opacity:1;transform:translateY(0);margin-top:8px}.c-right{width:20%;display:flex;justify-content:flex-end;align-items:center}@media (max-width:768px){#nav-menu{top:3.5%;right:8%}#video-wrapper.shrunk{left:8%;top:2%}#menu-overlay nav a{font-size:1.8rem}.table-container{top:12vh;height:85vh;width:90vw;left:5vw}.c-left{width:25%}.c-center{width:55%;padding:0 10px}.c-right{width:20%}.c-desc{max-width:100%;font-size:.75rem}.c-year{font-size:.7rem}.collab-row.active{flex:var(--active-flex-mob,5.5)}.collab-row.active .c-img{width:80px;height:80px}}</style>
+</head>
+<body>
+
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-99999;pointer-events:none;object-fit:cover;" alt="" aria-hidden="true">
+
+<div id="custom-cursor"></div>
+<div id="noise-layer"></div>
+<a href="index.html" id="video-wrapper" class="shrunk" aria-label="Torna alla Home">
+<!-- Video convertito per compatibilità incrociata -->
+<video class="bg-video active-vid" autoplay loop muted playsinline disablePictureInPicture disableRemotePlayback>
+    <source src="black_low.mp4" type='video/mp4; codecs="hvc1"'>
+    <source src="black_low.webm" type="video/webm">
+</video>
+<div id="video-click-layer"></div>
+</a>
+<div id="nav-menu" aria-label="Apri/Chiudi Menu">
+<span></span><span></span><span></span>
+</div>
+<div id="menu-overlay">
+<nav>
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="collaborazioni.html">Collaborazioni</a>
+<a href="artisti.html">Artisti</a>
+<a href="contatti.html">Contatti</a>
+</nav>
+</div>
+<main class="table-container">
+<div class="collab-row" style="--active-flex:4;--active-flex-mob:6">
+<div class="c-left"><img src="https://picsum.photos/200/200?random=1" class="c-img shadow-target no-shadow" alt="Logo"></div>
+<div class="c-center">
+<h2 class="c-name">Vers Libre Studios</h2>
+<p class="c-desc">Produzione indipendente incentrata sulla decostruzione dell'inquadratura e il montaggio non lineare. Forniscono supporto tecnico per progetti che rifiutano il realismo narrativo convenzionale.</p>
+</div>
+<div class="c-right"><p class="c-year">2018—2021</p></div>
+</div>
+<div class="collab-row" style="--active-flex:6;--active-flex-mob:9">
+<div class="c-left"><img src="https://picsum.photos/200/200?random=2" class="c-img shadow-target no-shadow" alt="Logo"></div>
+<div class="c-center">
+<h2 class="c-name">Kino Eye Lab</h2>
+<p class="c-desc">Ricerca visiva, sperimentazione sui formati ottici e sviluppo di partiture visive dissonanti. Il loro lavoro si concentra sullo smantellamento della sintassi visiva classica, cercando l'anarchia compositiva all'interno della pellicola cruda. Lavorano strettamente con i registi per trovare una nuova metrica temporale nelle inquadrature scartate e negli errori di esposizione.</p>
+</div>
+<div class="c-right"><p class="c-year">1994—2003</p></div>
+</div>
+<div class="collab-row" style="--active-flex:3.5;--active-flex-mob:4">
+<div class="c-left"><img src="https://picsum.photos/200/200?random=3" class="c-img shadow-target no-shadow" alt="Logo"></div>
+<div class="c-center">
+<h2 class="c-name">Asthenic Archives</h2>
+<p class="c-desc">Restauro, conservazione e archiviazione di pellicole censurate e materiali di cinema crudo europeo indipendente.</p>
+</div>
+<div class="c-right"><p class="c-year">2022—ONGOING</p></div>
+</div>
+<div class="collab-row" style="--active-flex:5;--active-flex-mob:8">
+<div class="c-left"><img src="https://picsum.photos/200/200?random=4" class="c-img shadow-target no-shadow" alt="Logo"></div>
+<div class="c-center">
+<h2 class="c-name">Dissonance Audio</h2>
+<p class="c-desc">Sound design specializzato in rumore bianco, sovrapposizione dialogica e silenzi assoluti. L'obiettivo non è la pulizia del suono, ma la sua saturazione emotiva. Utilizzano l'accavallamento vocale per distruggere l'importanza dell'individuo, trasformando il dialogo in pura tessitura orchestrale di puro disturbo.</p>
+</div>
+<div class="c-right"><p class="c-year">1989—1992</p></div>
+</div>
+<div class="collab-row" style="--active-flex:4;--active-flex-mob:6">
+<div class="c-left"><img src="https://picsum.photos/200/200?random=5" class="c-img shadow-target no-shadow" alt="Logo"></div>
+<div class="c-center">
+<h2 class="c-name">Obscura Collective</h2>
+<p class="c-desc">Organizzazione di esposizioni emozionali, gallerie interattive e installazioni site-specific pensate per immergere lo spettatore nel caos.</p>
+</div>
+<div class="c-right"><p class="c-year">2005—2011</p></div>
+</div>
+<div class="collab-row" style="--active-flex:6;--active-flex-mob:9">
+<div class="c-left"><img src="https://picsum.photos/200/200?random=6" class="c-img shadow-target no-shadow" alt="Logo"></div>
+<div class="c-center">
+<h2 class="c-name">Frammenti Distribuzione</h2>
+<p class="c-desc">Rete internazionale dedicata alla distribuzione capillare di opere rifiutate dai circuiti classici. Combattono la dittatura della narrazione felice, promuovendo lavori che disturbano e rifiutano la logica commerciale. La loro missione è creare spazi fisici e digitali dove l'anomalia cinematografica trovi un porto sicuro di comprensione.</p>
+</div>
+<div class="c-right"><p class="c-year">1998—2000</p></div>
+</div>
+<div class="collab-row" style="--active-flex:3.5;--active-flex-mob:4">
+<div class="c-left"><img src="https://picsum.photos/200/200?random=7" class="c-img shadow-target no-shadow" alt="Logo"></div>
+<div class="c-center">
+<h2 class="c-name">Geometric Chaos</h2>
+<p class="c-desc">Direzione artistica e scenografia applicata. Orchestrazione meticolosa del caos scenico e degli spazi vuoti.</p>
+</div>
+<div class="c-right"><p class="c-year">2015—2018</p></div>
+</div>
+<div class="collab-row" style="--active-flex:4;--active-flex-mob:6">
+<div class="c-left"><img src="https://picsum.photos/200/200?random=8" class="c-img shadow-target no-shadow" alt="Logo"></div>
+<div class="c-center">
+<h2 class="c-name">Silent Rooms</h2>
+<p class="c-desc">Studi di post-produzione cromatica focalizzati su estetiche ad alto impatto sensoriale e desaturazione strutturale delle immagini a contrasto.</p>
+</div>
+<div class="c-right"><p class="c-year">2002—2007</p></div>
+</div>
+<div class="collab-row" style="--active-flex:5;--active-flex-mob:8">
+<div class="c-left"><img src="https://picsum.photos/200/200?random=9" class="c-img shadow-target no-shadow" alt="Logo"></div>
+<div class="c-center">
+<h2 class="c-name">Rhythm & Speech</h2>
+<p class="c-desc">Laboratorio attoriale focalizzato sul trattamento fonetico, ritmico e isterico dei dialoghi scritti e improvvisati. Lavora con attori non professionisti per creare un disagio autentico e ripetitivo. Decostruiscono le tecniche accademiche per cercare le imperfezioni e gli scatti nervosi più sinceri.</p>
+</div>
+<div class="c-right"><p class="c-year">2019—2024</p></div>
+</div>
+<div class="collab-row" style="--active-flex:3.5;--active-flex-mob:4">
+<div class="c-left"><img src="https://picsum.photos/200/200?random=10" class="c-img shadow-target no-shadow" alt="Logo"></div>
+<div class="c-center">
+<h2 class="c-name">Charasu Foundation</h2>
+<p class="c-desc">Fondo di sostegno economico per artisti emergenti che desiderano creare senza restrizioni morali o sintattiche.</p>
+</div>
+<div class="c-right"><p class="c-year">2025—ONGOING</p></div>
+</div>
+</main>
+<script>let interactionsEnabled=!1;window.addEventListener("mousemove",(()=>{interactionsEnabled=!0}),{once:!0}),window.addEventListener("touchstart",(()=>{interactionsEnabled=!0}),{once:!0});const customCursor=document.getElementById("custom-cursor");window.addEventListener("mousemove",(e=>{customCursor.style.transform=`translate(${Math.round(e.clientX-12)}px, ${Math.round(e.clientY-12)}px)`}));const navMenu=document.getElementById("nav-menu"),menuOverlay=document.getElementById("menu-overlay");navMenu.addEventListener("click",(()=>{navMenu.classList.toggle("open"),menuOverlay.classList.toggle("open")}));const rows=document.querySelectorAll(".collab-row");rows.forEach((e=>{e.addEventListener("mouseenter",(function(){interactionsEnabled&&window.innerWidth>768&&(rows.forEach((e=>e.classList.remove("active"))),this.classList.add("active"))})),e.addEventListener("click",(function(){if(interactionsEnabled)if(window.innerWidth<=768){const e=this.classList.contains("active");rows.forEach((e=>e.classList.remove("active"))),e||this.classList.add("active")}else rows.forEach((e=>e.classList.remove("active"))),this.classList.add("active")}))}));const shadowTargets=document.querySelectorAll(".shadow-target"),shadowClasses=["no-shadow","shadow-external","shadow-internal"];let currentShadowIndex=0;document.addEventListener("keydown",(e=>{"s"===e.key.toLowerCase()&&(currentShadowIndex=(currentShadowIndex+1)%shadowClasses.length,shadowTargets.forEach((e=>{e.classList.remove(...shadowClasses),e.classList.add(shadowClasses[currentShadowIndex])})))})),window.addEventListener("load",(()=>{rows.forEach(((e,s)=>{setTimeout((()=>{e.classList.add("is-visible")}),80*s)}))}))</script>
+</body>
+</html>

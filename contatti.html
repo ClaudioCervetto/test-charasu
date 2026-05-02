@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="color-scheme" content="only light">
+<meta name="theme-color" content="#ffffff">
+<title>チャラス - Contatti</title>
+<meta name="description" content="Entra in contatto con Charasu. Un'esposizione emozionale che affronta temi sensibili dell'umano.">
+<meta name="keywords" content="Charasu, Anna Chiara Borriello, esposizione emozionale, temi sensibili, luogo sicuro, cinema sperimentale, Vers Libre">
+<meta name="author" content="Anna Chiara Borriello">
+<meta property="og:title" content="チャラス - Contatti">
+<meta property="og:description" content="Entra in contatto con Charasu.">
+<meta property="og:image" content="https://claudiocervetto.github.io/test-charasu/anteprima.png">
+<meta property="og:url" content="https://claudiocervetto.github.io/test-charasu/contatti.html">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "チャラス - Contatti",
+  "author": {
+    "@type": "Person",
+    "name": "Anna Chiara Borriello"
+  },
+  "description": "Un'esposizione emozionale che affronta temi sensibili dell'umano per rinquadrarlo e dargli un senso di appartenenza a un luogo sicuro che lo capisce in questo spazio 'espositivo'.",
+  "about": {
+    "@type": "CreativeWork",
+    "name": "Progettazione della piattaforma Charasu",
+    "abstract": "Uno spazio di narrazione visiva e sonora che utilizza il concetto di Vers Libre per esplorare la fragilità umana e il montaggio cinematografico come strumento di accoglienza e comprensione."
+  }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+    --bg-color: transparent;
+    color-scheme: only light;
+    forced-color-adjust: none;
+}
+*{cursor:none!important;box-sizing:border-box}
+
+body, html {
+    margin:0;padding:0;
+    /* Forza la trasparenza assoluta per mostrare l'IMG bianca sotto */
+    background: transparent !important;
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+    font-family:'JetBrains Mono',monospace;overflow:hidden;width:100vw;height:100vh;overscroll-behavior:none
+}
+#menu-overlay {
+    position:fixed;top:0;left:0;width:100vw;height:100vh;
+    background-color: rgba(255,255,255,.95) !important;
+    z-index:2147483645;display:flex;justify-content:center;align-items:center;opacity:0;pointer-events:none;transition:opacity .5s ease
+}
+#menu-overlay nav a {
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+    text-decoration:none;font-size:2.5vw;font-weight:700;text-transform:uppercase;letter-spacing:2px;transition:color .3s ease,transform .3s ease
+}
+#menu-overlay nav a:hover {
+    color: #888888 !important;
+    -webkit-text-fill-color: #888888 !important;
+    transform:scale(1.05)
+}
+.contact-title {
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+    font-size:clamp(3rem, 6vw, 6rem);text-transform:uppercase;margin:0 0 60px 0;line-height:1.1;font-weight:800;letter-spacing:-2px
+}
+.c-label {
+    color: #888888 !important;
+    -webkit-text-fill-color: #888888 !important;
+    font-size:.8rem;text-transform:uppercase;font-weight:700;letter-spacing:1px
+}
+.c-value {
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+    font-size:1.1rem;line-height:1.6;text-decoration:none;transition:color .3s ease
+}
+a.c-value:hover {
+    color: #888888 !important;
+    -webkit-text-fill-color: #888888 !important;
+}
+.site-footer {
+    color: #888888 !important;
+    -webkit-text-fill-color: #888888 !important;
+    position:absolute;bottom:40px;left:0;width:100%;text-align:center;font-size:.65rem;letter-spacing:1px;text-transform:uppercase;z-index:10
+}
+.social-icon {
+    fill: #000000 !important;
+    width:28px;height:28px;transition:fill .3s ease,transform .3s ease
+}
+.social-link:hover .social-icon {
+    fill: #888888 !important;
+    transform:translateY(-3px)
+}
+
+#custom-cursor{position:fixed;top:0;left:0;width:24px;height:24px;background-color:#fff;mix-blend-mode:difference;pointer-events:none;z-index:2147483647;animation:cursorMorph 1.2s infinite;will-change:transform,clip-path;transform-style:preserve-3d;-webkit-backface-visibility:hidden;backface-visibility:hidden}@media (pointer:coarse){#custom-cursor{display:none!important}*{cursor:auto!important}}@keyframes cursorMorph{0%,32.9%{clip-path:circle(48% at 50% 50%)}33%,65.9%{clip-path:polygon(2% 2%,98% 2%,98% 98%,2% 98%)}66%,99.9%{clip-path:polygon(50% 2%,2% 98%,98% 98%)}100%{clip-path:circle(48% at 50% 50%)}}#noise-layer{position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999999990;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");opacity:.15;filter:invert(1);background-size:100px}#video-wrapper.shrunk{position:fixed;top:2%;left:2%;width:55px;height:55px;z-index:9999999995;display:flex;justify-content:center;align-items:center;text-decoration:none}.bg-video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:contain;opacity:1;pointer-events:none}#video-click-layer{position:absolute;top:0;left:0;width:100%;height:100%;z-index:10}#nav-menu{position:fixed;top:4%;right:2%;width:30px;height:20px;display:flex;flex-direction:column;justify-content:space-between;z-index:2147483646;mix-blend-mode:difference}#nav-menu span{display:block;height:3px;width:100%;background-color:#fff;border-radius:2px;transition:transform .4s ease,opacity .4s ease}#nav-menu.open span:first-child{transform:translateY(8.5px) rotate(45deg)}#nav-menu.open span:nth-child(2){opacity:0}#nav-menu.open span:nth-child(3){transform:translateY(-8.5px) rotate(-45deg)}#menu-overlay.open{opacity:1;pointer-events:auto}#menu-overlay nav{display:flex;flex-direction:column;text-align:center;gap:40px}.fade-target{opacity:0;transform:translateY(30px);transition:opacity .9s cubic-bezier(.16, 1, .3, 1),transform .9s cubic-bezier(.16, 1, .3, 1)}.fade-target.is-visible{opacity:1;transform:translateY(0)}.contact-canvas{position:relative;width:100vw;height:100vh;z-index:5;display:flex;flex-direction:column;justify-content:center;padding:0 10vw;max-width:1400px;margin:0 auto}.contact-grid{display:flex;gap:80px;flex-wrap:wrap}.contact-item{display:flex;flex-direction:column;gap:15px}.social-icons-wrapper{display:flex;gap:25px;margin-top:5px}@media (max-width:768px){#nav-menu{top:3.5%;right:8%}#video-wrapper.shrunk{left:8%;top:2%}#menu-overlay nav a{font-size:1.8rem}.contact-canvas{padding:120px 8vw 40px 8vw;justify-content:flex-start;overflow-y:auto}.contact-title{margin-bottom:50px;letter-spacing:-1px}.contact-grid{flex-direction:column;gap:40px}.site-footer{position:absolute;bottom:5%;left:0;margin-top:0}}</style>
+</head>
+<body>
+
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-99999;pointer-events:none;object-fit:cover;" alt="" aria-hidden="true">
+
+<div id="custom-cursor"></div>
+<div id="noise-layer"></div>
+<a href="index.html" id="video-wrapper" class="shrunk" aria-label="Torna alla Home">
+<!-- Video convertito per compatibilità incrociata -->
+<video class="bg-video active-vid" autoplay loop muted playsinline disablePictureInPicture disableRemotePlayback>
+    <source src="black_low.mp4" type='video/mp4; codecs="hvc1"'>
+    <source src="black_low.webm" type="video/webm">
+</video>
+<div id="video-click-layer"></div>
+</a>
+<div id="nav-menu" aria-label="Apri/Chiudi Menu">
+<span></span><span></span><span></span>
+</div>
+<div id="menu-overlay">
+<nav>
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="collaborazioni.html">Collaborazioni</a>
+<a href="artisti.html">Artisti</a>
+<a href="contatti.html">Contatti</a>
+</nav>
+</div>
+<main class="contact-canvas">
+<h1 class="contact-title fade-target">Silence<br>is a choice.</h1>
+<div class="contact-grid">
+<div class="contact-item fade-target">
+<div class="c-label">[ INQUIRIES ]</div>
+<a href="mailto:info@charasu.com" class="c-value">info@charasu.com</a>
+</div>
+<div class="contact-item fade-target">
+<div class="c-label">[ HEADQUARTERS ]</div>
+<div class="c-value">
+Via Sperimentale, 404<br>
+Genova, Liguria<br>
+Italy
+</div>
+</div>
+<div class="contact-item fade-target">
+<div class="c-label">[ NETWORK ]</div>
+<div class="social-icons-wrapper">
+<a href="#" class="social-link" aria-label="Instagram">
+<svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+</svg>
+</a>
+<a href="#" class="social-link" aria-label="X (Twitter)">
+<svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/>
+</svg>
+</a>
+<a href="#" class="social-link" aria-label="Are.na">
+<svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.28 17.5l-2.07-3.56H9.79l-2.07 3.56H5.4l5.35-9.15h2.5l5.35 9.15h-2.32zM12 7.7l-1.55 2.65h3.1L12 7.7z"/>
+</svg>
+</a>
+</div>
+</div>
+</div>
+<footer class="site-footer fade-target">
+© 2026 Charasu. All rights reserved.
+</footer>
+</main>
+<script>const customCursor=document.getElementById("custom-cursor");window.addEventListener("mousemove",(e=>{customCursor.style.transform=`translate(${Math.round(e.clientX-12)}px, ${Math.round(e.clientY-12)}px)`}));const navMenu=document.getElementById("nav-menu"),menuOverlay=document.getElementById("menu-overlay");navMenu.addEventListener("click",(()=>{navMenu.classList.toggle("open"),menuOverlay.classList.toggle("open")})),window.addEventListener("load",(()=>{document.querySelectorAll(".fade-target").forEach(((e,t)=>{setTimeout((()=>{e.classList.add("is-visible")}),120*t)}))}))</script>
+</body>
+</html>
