@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="color-scheme" content="only light">
+<meta name="theme-color" content="#ffffff">
+<title>チャラス</title>
+<meta name="description" content="チャラス: un'esposizione emozionale che affronta temi sensibili dell'umano per rinquadrarlo e dargli un senso di appartenenza a un luogo sicuro che lo capisce in questo spazio 'espositivo' di temi sensibili.">
+<meta name="keywords" content="Charasu, Anna Chiara Borriello, esposizione emozionale, temi sensibili, luogo sicuro, cinema sperimentale, Vers Libre">
+<meta name="author" content="Anna Chiara Borriello">
+<script>"scrollRestoration"in history&&(history.scrollRestoration="manual"),window.onbeforeunload=function(){window.scrollTo(0,0)}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+    --gap: 5px;
+    --bg-color: #000000;
+    --sheet-shadow: none; 
+    color-scheme: only light;
+    forced-color-adjust: none;
+}
+html{scroll-behavior:auto}*{cursor:none!important;box-sizing:border-box}
+
+/* FIX: Sostituito overflow-x: hidden con clip per massima compatibilità con lo sticky */
+body,html{margin:0;padding:0;max-width:100%;overflow-x:clip;overscroll-behavior:none;background-color:var(--bg-color);font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;color:#fff}
+body.locked{overflow:hidden!important;height:100vh!important;touch-action:none}
+body:not(.locked){overflow-y:visible}
+
+.paper-sheet {
+    background-color: transparent !important;
+    background-image: linear-gradient(#ffffff, #ffffff) !important;
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+    padding:45px;width:85%;max-width:650px;margin-bottom:-20px;position:relative;font-family:'JetBrains Mono',monospace;font-size:.85rem;line-height:1.7;border:1px solid #d0d0d0!important;
+    box-shadow: var(--sheet-shadow) !important;
+}
+
+/* ====================================================================== */
+/* LA MAGIA DEL PINNING (Fermo Immagine) - ORA INDIPENDENTE               */
+/* ====================================================================== */
+#timeline-track {
+    position: relative;
+    width: 100%;
+    height: 700vh; /* Il binario invisibile di 7 schermi */
+    z-index: 20;
+}
+
+#pinned-container {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh; /* Si incastra in cima e riempie lo schermo */
+    overflow: hidden;
+}
+
+.fullscreen-sheet {
+    position: absolute; 
+    top: 0; left: 0;
+    background-color: transparent !important;
+    background-image: linear-gradient(#ffffff, #ffffff) !important;
+    width:100vw;height:100vh;display:flex;justify-content:flex-start;align-items:center;padding:0 10vw;box-sizing:border-box;
+    z-index:10; border-top:1px solid #d0d0d0;
+}
+
+#black-phase-wrapper {
+    position: absolute; 
+    top:0; left:0; width:100vw; height:100vh; z-index:20; pointer-events:none;
+}
+/* ====================================================================== */
+
+#finale-section {
+    background-color: transparent !important;
+    background-image: linear-gradient(#ffffff, #ffffff) !important;
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+    position:relative; width:100vw; height:auto; z-index:30; display:block; font-family:'JetBrains Mono',monospace;
+}
+
+.finale-content {
+    position:relative; max-width:1200px; margin:0 auto; width:100%; height:9500px; padding-bottom:250px;
+}
+
+#sudden-blackout{position:absolute;top:0;left:0;width:100%;height:100%;background-color:#000;z-index:1;opacity:0;}
+#shape-container{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;display:flex;justify-content:center;align-items:center}
+#morph-shape{width:0;height:0;background-color:#000;opacity:0}
+
+#white-shape {
+    background-image: linear-gradient(#ffffff, #ffffff) !important;
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100px;height:100px;transition:transform 1.5s cubic-bezier(.22, 1, .36, 1),opacity 1s ease
+}
+.giant-text { color: #000000 !important; -webkit-text-fill-color: #000000 !important; }
+.f-text { color: #000000 !important; -webkit-text-fill-color: #000000 !important; }
+.f-lang, .f-text.ru, .site-footer { color: #888888 !important; -webkit-text-fill-color: #888888 !important; }
+
+@media (prefers-color-scheme:dark){.finale-content{background-color:transparent!important}#menu-overlay nav a{color:#fff!important;-webkit-text-fill-color:#ffffff!important;text-shadow:none!important}}#custom-cursor{position:fixed;top:0;left:0;width:24px;height:24px;background-color:#fff;mix-blend-mode:difference;pointer-events:none;z-index:2147483647;animation:cursorMorph 1.2s infinite}@media (pointer:coarse){#custom-cursor{display:none!important}*{cursor:auto!important}}@keyframes cursorMorph{0%,30%{clip-path:circle(50% at 50% 50%)}33%,63%{clip-path:polygon(0% 0%,100% 0%,100% 100%,0% 100%)}66%,96%{clip-path:polygon(50% 0%,0% 100%,100% 100%)}100%{clip-path:circle(50% at 50% 50%)}}@keyframes simpleFadeIn{to{opacity:1;transform:translateY(0)}}#noise-layer{position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:2147483640;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");opacity:.2;background-size:100px}#video-wrapper{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:70vw;height:70vh;z-index:2147483641;display:flex;justify-content:center;align-items:center;transition:all 2.5s cubic-bezier(.85, 0, .05, 1)}#video-wrapper.shrunk{top:2%;left:2%;transform:translate(0,0);width:55px;height:55px;text-decoration:none}.bg-video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:contain;pointer-events:none!important;opacity:0;transition:opacity .3s ease}.bg-video.active-vid{opacity:1}#video-click-layer{position:absolute;top:0;left:0;width:100%;height:100%;z-index:10}#nav-menu{position:fixed;top:4%;right:2%;width:30px;height:20px;display:flex;flex-direction:column;justify-content:space-between;z-index:2147483646;mix-blend-mode:difference;opacity:0;transition:opacity 2.5s cubic-bezier(.85, 0, .05, 1)}#nav-menu.visible{opacity:1}#nav-menu span{display:block;height:3px;width:100%;background-color:#fff;border-radius:2px;transition:transform .4s ease,opacity .4s ease}#nav-menu.open span:first-child{transform:translateY(8.5px) rotate(45deg)}#nav-menu.open span:nth-child(2){opacity:0}#nav-menu.open span:nth-child(3){transform:translateY(-8.5px) rotate(-45deg)}#menu-overlay{position:fixed;top:0;left:0;width:100vw;height:100vh;background-color:rgba(0,0,0,.95)!important;z-index:2147483645;display:flex;justify-content:center;align-items:center;opacity:0;pointer-events:none;transition:opacity .5s ease}#menu-overlay.open{opacity:1;pointer-events:auto}#menu-overlay nav{display:flex;flex-direction:column;text-align:center;gap:40px}#menu-overlay nav a{font-family:'JetBrains Mono',monospace;color:#fff!important;-webkit-text-fill-color:#ffffff!important;text-decoration:none!important;font-size:2.5vw;font-weight:700;text-transform:uppercase;letter-spacing:2px;}#menu-overlay nav a:hover{color:#888!important;-webkit-text-fill-color:#888888!important;transform:scale(1.05)}.fixed-layer{position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:1;pointer-events:none}.center-title{position:absolute;top:150%;left:50%;transform:translate(-50%,-50%);font-size:16vw;font-family:'JetBrains Mono',monospace;font-weight:700;color:#fff;width:100%;display:flex;justify-content:center;transition:top 2.5s cubic-bezier(.85, 0, .05, 1)}.center-title.centered{top:50%}.letter-wrap{display:inline-block;overflow:hidden;line-height:1.1;padding-bottom:2px;margin:0 -.5vw}.letter{display:inline-block;transform:translateY(100%);opacity:1;transition:transform .6s cubic-bezier(.22, 1, .36, 1)}.center-title.centered .letter{transform:translateY(0)}.center-title .letter-wrap:nth-child(4) .letter{transition-delay:1.20s}.center-title .letter-wrap:nth-child(3) .letter{transition-delay:1.26s}.center-title .letter-wrap:nth-child(2) .letter{transition-delay:1.32s}.center-title .letter-wrap:first-child .letter{transition-delay:1.38s}main{position:relative;z-index:10;padding:110vh 0 0 0;opacity:0;transform:translateY(50px);animation:simpleFadeIn 1.5s ease forwards 5.5s}.paper-sheets-container{display:flex;flex-direction:column;align-items:center;width:100%;margin-bottom:20px}.paper-sheet:first-child{transform:translateX(-35px) rotate(-1deg);z-index:11}.paper-sheet:nth-child(2){transform:translateX(25px) translateY(-20px) rotate(1deg);z-index:12}.paper-sheet:nth-child(3){transform:translateX(-15px) translateY(-10px);z-index:13;margin-bottom:40vh!important}.paper-sheet:nth-child(4){transform:translateX(40px) rotate(-.5deg);z-index:14}.paper-sheet:nth-child(5){transform:translateX(-25px) translateY(5px) rotate(1.5deg);z-index:15}.paper-sheet:nth-child(6){transform:translateX(15px) translateY(-15px) rotate(-1.2deg);z-index:16;margin-bottom:10vh!important}.sheet-row{display:flex;gap:30px;margin-bottom:20px}.sheet-row:last-child{margin-bottom:0}.lang-tag{font-weight:700;min-width:40px}.text-content{flex-grow:1}.quote-text{font-weight:700;font-size:1.1rem;text-transform:uppercase}.giant-text{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:7vw;text-align:left;text-transform:lowercase;line-height:1.2;width:100%;max-width:1600px;margin:0}.giant-text span{opacity:0}
+
+@keyframes jitterShake{0%{transform:translate(3px,2px) rotate(0)}10%{transform:translate(-2px,-3px) rotate(-1deg)}20%{transform:translate(-4px,1px) rotate(1deg)}30%{transform:translate(1px,3px) rotate(0)}40%{transform:translate(2px,-2px) rotate(1deg)}50%{transform:translate(-2px,3px) rotate(-1deg)}60%{transform:translate(-4px,2px) rotate(0)}70%{transform:translate(3px,1px) rotate(-1deg)}80%{transform:translate(-2px,-2px) rotate(1deg)}90%{transform:translate(3px,3px) rotate(0)}100%{transform:translate(1px,-3px) rotate(-1deg)}}.is-active{opacity:1;animation:jitterShake .15s infinite}.shape-0{clip-path:polygon(50% 0%,0% 100%,100% 100%)}.shape-1{clip-path:circle(50% at 50% 50%)}.shape-2{clip-path:polygon(0% 0%,100% 0%,100% 100%,0% 100%)}#epilogue-container{position:absolute;top:0;left:0;width:100vw;height:100vh;z-index:3;display:none;color:#fff;pointer-events:none}#epilogue-container.show{display:block}@keyframes fadeSymbolIn{0%{opacity:0}100%{opacity:1}}#epilogue-container.show #white-shape{animation:fadeSymbolIn .5s ease .5s both}#epilogue-text-wrapper{position:absolute;top:50%;left:50%;transform:translate(calc(-50% + 250px),calc(-30% + 65px));width:90%;max-width:420px;height:12.8em;overflow:hidden;opacity:0;transition:opacity 1.5s ease,transform 1.5s ease;-webkit-mask-image:linear-gradient(to bottom,transparent 0%,black 15%,black 85%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0%,black 15%,black 85%,transparent 100%)}#epilogue-text-inner{font-family:'JetBrains Mono',monospace;font-size:.9rem;line-height:1.6;transform:translateY(0)}#epilogue-container.shifted #white-shape{transform:translate(calc(-50% - 250px),-50%)}#epilogue-container.shifted #epilogue-text-wrapper{opacity:1;transform:translate(calc(-50% + 120px),calc(-50% + 42px))}
+
+.f-block{position:absolute}.f-img{filter:grayscale(100%);object-fit:cover;opacity:.85;border:1px solid #eee}.f-new-text{max-width:420px;display:flex;flex-direction:column}.f-lang{font-size:.75rem;margin-bottom:8px;font-weight:700}.f-text{font-size:.85rem;line-height:1.6}.f-text.ru{margin-top:25px}.pos-1{top:200px;left:10%}.pos-2{top:700px;left:50%;width:400px;height:300px}.pos-3{top:1200px;left:25%}.pos-4{top:1700px;left:15%;width:300px;height:400px}.pos-5{top:2200px;left:45%}.pos-6{top:2700px;left:55%;width:450px;height:300px}.pos-7{top:3200px;left:8%}.pos-8{top:3700px;left:20%;width:350px;height:350px}.pos-9{top:4200px;left:50%}.pos-10{top:4700px;left:10%;width:450px;height:250px}.pos-11{top:5200px;left:30%}.pos-12{top:5700px;left:60%;width:300px;height:450px}.pos-13{top:6200px;left:15%}.pos-14{top:6700px;left:40%;width:500px;height:350px}.pos-15{top:7200px;left:45%}.pos-16{top:7700px;left:5%;width:350px;height:200px}.pos-17{top:8200px;left:20%}.pos-18{top:8700px;left:50%;width:400px;height:400px}.site-footer{position:absolute;bottom:50px;left:50%;transform:translateX(-50%);width:100%;text-align:center;font-size:.65rem;letter-spacing:1px;text-transform:uppercase;z-index:10}@media (max-width:768px){#nav-menu{top:3.5%;right:8%}#video-wrapper.shrunk{left:8%;top:2%}#menu-overlay nav a{font-family:'JetBrains Mono',monospace!important;font-size:8vw!important}#epilogue-container.shifted #white-shape{transform:translate(-50%,calc(-50% - 180px))}#epilogue-text-wrapper{max-width:80%}#epilogue-container.shifted #epilogue-text-wrapper{opacity:1;transform:translate(-50%,calc(-50% + 80px))}.finale-content{display:flex;flex-direction:column;gap:80px;height:auto!important;padding-top:150px;padding-bottom:80px}.f-block{position:relative!important;top:auto!important;left:auto!important;right:auto!important;width:85%!important;max-width:100%!important;margin:0!important}.f-img{width:100%!important;height:auto!important}.pos-1,.pos-10,.pos-13,.pos-16,.pos-4,.pos-7{align-self:flex-start;margin-left:5%!important}.pos-12,.pos-14,.pos-18,.pos-2,.pos-6{align-self:flex-end;margin-right:5%!important}.pos-11,.pos-15,.pos-17,.pos-3,.pos-5,.pos-8,.pos-9{align-self:center}.site-footer{position:relative!important;bottom:auto!important;left:auto!important;transform:none!important;margin-top:20px!important;padding-bottom:50px!important}}
+</style>
+</head>
+<body class="locked">
+<div id="custom-cursor"></div>
+<div id="noise-layer"></div>
+
+<a href="#" id="video-wrapper">
+    <video class="bg-video active-vid" id="vid-white" autoplay loop muted playsinline disablePictureInPicture disableRemotePlayback>
+        <source src="white_low.mp4" type='video/mp4; codecs="hvc1"'>
+        <source src="white_low.webm" type="video/webm">
+    </video>
+    <video class="bg-video" id="vid-black" autoplay loop muted playsinline disablePictureInPicture disableRemotePlayback>
+        <source src="black_low.mp4" type='video/mp4; codecs="hvc1"'>
+        <source src="black_low.webm" type="video/webm">
+    </video>
+    <div id="video-click-layer"></div>
+</a>
+
+<div id="nav-menu">
+<span></span><span></span><span></span>
+</div>
+<div id="menu-overlay">
+<nav>
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="collaborazioni.html">Collaborazioni</a>
+<a href="artisti.html">Artisti</a>
+<a href="contatti.html">Contatti</a>
+</nav>
+</div>
+<div class="fixed-layer">
+<div class="center-title">
+<span class="letter-wrap"><span class="letter">チ</span></span>
+<span class="letter-wrap"><span class="letter">ャ</span></span>
+<span class="letter-wrap"><span class="letter">ラ</span></span>
+<span class="letter-wrap"><span class="letter">ス</span></span>
+</div>
+</div>
+
+<main>
+<div class="paper-sheets-container">
+<div class="paper-sheet">
+<div class="sheet-row">
+<div class="lang-tag">[EN]</div>
+<div class="text-content">Her films resist categorization. She does not seek clarity, nor does she attempt to satisfy the viewer's desire for a happy ending. It is difficult to define her directorial work, yet questions of cinematic direction, creative approaches, and her way of thinking have long occupied me.</div>
+</div>
+<div class="sheet-row">
+<div class="lang-tag">[RU]</div>
+<div class="text-content">Ее фильмы не поддаются категоризации. Она не старается быть понятной и не пытается удовлетворить желание зрителя счастливым концом. Сложно давать определения ее режиссерской работе...</div>
+</div>
+</div>
+<div class="paper-sheet">
+<div class="sheet-row">
+<div class="lang-tag">[QUOTE]</div>
+<div class="text-content quote-text">THESE INJECTIONS DON'T HURT ME. I DON'T CARE WHAT THE STUDIO DIRECTOR SAYS. I FEEL BAD, BUT I'M A VERY HAPPY PERSON.</div>
+</div>
+</div>
+<div class="paper-sheet">
+<div class="sheet-row">
+<div class="lang-tag">[EN]</div>
+<div class="text-content">In 1990, The Asthenic Syndrome received the Grand Prix at the Berlin International Film Festival. The tragicomedy The Tuner was screened at the Venice Film Festival. Her films were repeatedly awarded prizes at Kinotavr and Nika.</div>
+</div>
+</div>
+<div class="paper-sheet">
+<div class="sheet-row">
+<div class="lang-tag">[FR]</div>
+<div class="text-content">Ses premières œuvres, comme "Brèves rencontres" e "Les Longs Adieux", ont été interdites par la censure soviétique pour leur prétendue "complexité formelle" et leur refus du réalisme socialiste imposé.</div>
+</div>
+<div class="sheet-row">
+<div class="lang-tag">[EN]</div>
+<div class="text-content">Her early works, such as "Brief Encounters" and "The Long Farewell," were banned by Soviet censorship for their alleged "formal complexity" and their rejection of imposed socialist realism.</div>
+</div>
+</div>
+<div class="paper-sheet">
+<div class="sheet-row">
+<div class="lang-tag">[NOTE]</div>
+<div class="text-content">The recurring use of non-professional actors mixed with seasoned theater veterans creates an unsettling, almost hypnotic dissonance in the dialogue delivery. Repetition becomes an auditory motif.</div>
+</div>
+</div>
+<div class="paper-sheet">
+<div class="sheet-row">
+<div class="lang-tag">[QUOTE]</div>
+<div class="text-content quote-text">I DON'T LIKE TO EXPLAIN MY FILMS. IF THEY CAN BE EXPLAINED IN WORDS, THERE WAS NO NEED TO MAKE A FILM ABOUT THEM.</div>
+</div>
+</div>
+</div>
+</main> <!-- ATTENZIONE QUI: Il main si chiude prima dell'animazione -->
+
+<!-- ====================================================================== -->
+<!-- BINARIO E FERMO IMMAGINE SGANCIATO DAL MAIN E DAL SUO TRANSFORM        -->
+<!-- ====================================================================== -->
+<div id="timeline-track">
+    <div id="pinned-container">
+        
+        <!-- Foglio Bianco che sta fisso nel pinned -->
+        <div class="fullscreen-sheet" id="typing-zone">
+            <p class="giant-text">a single word is unveiled only with your cursor's journey</p>
+        </div>
+        
+        <!-- Sovrapposizione Nera che appare e scorre dentro il pinned -->
+        <div id="black-phase-wrapper">
+            <div id="sudden-blackout"></div>
+            <div id="shape-container">
+                <div id="morph-shape"></div>
+            </div>
+            <div id="epilogue-container">
+                <div id="white-shape" class="shape-0"></div>
+                <div id="epilogue-text-wrapper">
+                    <div id="epilogue-text-inner">
+LA FORMA DIVORA LA CORNICE.<br><br>
+Ciò che restringe l'inquadratura si frammenta, lasciando spazio unicamente all'astrazione.<br><br>
+Il Vers Libre non ammette confini.<br><br>
+La linearità si spezza. Ogni inquadratura diventa un frammento autonomo, una sillaba visiva.<br><br>
+Il montaggio non collega, ma scontra. L'intenzione autoriale svanisce dietro l'urto.<br><br>
+La ripetizione diventa un motivo uditivo. La realtà è mistificata. Fine del formato.<br><br>
+Non c'è consolazione nella logica temporale. Il caos viene orchestrato con precisione geometrica.<br><br>
+I dialoghi si accavallano fino a diventare rumore bianco, seguiti da un silenzio assoluto e disturbante.<br><br>
+Il personaggio non è più il centro dell'universo narrativo, ma solo un elemento di disturbo in una partitura discordante.<br><br>
+Questa è la disintegrazione del cinema classico. Un respiro trattenuto troppo a lungo.<br><br>
+L'osservatore è costretto a ricostruire il senso, o a perdersi definitivamente nell'opera.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- ====================================================================== -->
+
+<section id="finale-section">
+<div class="finale-content">
+<div class="f-block f-new-text pos-1">
+<div class="f-lang">(EN)</div>
+<div class="f-text">Her cinema is an architectural construct of emotional chaos. People walk out of frame, line the camera lingers on an empty doorway. A profound silence follows a deafening argument. What remains is an uncompromising vision, a rejection of the synthetic gloss of traditional filmmaking.</div>
+<div class="f-text ru"><span class="f-lang">(RU)</span><br><br>Ее кино — это архитектурная конструкция эмоционального хаоса. Люди выходят из кадра, камера задерживается на пустом дверном проеме. За оглушительным спором следует глубокая тишина. Остается бескомпромиссное видение...</div>
+<div class="f-lang" style="margin-top:25px">(NOTE)</div>
+<div class="f-text" style="font-weight:700;font-size:.95rem;text-transform:uppercase">Replacing it with something raw, irritating, yet undeniably alive. A cinematic organism that breathes on its own terms.</div>
+</div>
+<img src="https://picsum.photos/400/300?random=31" class="f-block f-img pos-2" alt="Frame Astratto">
+<div class="f-block f-new-text pos-3">
+<div class="f-lang">(EN)</div>
+<div class="f-text">Her cinema is an architectural construct of emotional chaos. People walk out of frame, line the camera lingers on an empty doorway. A profound silence follows a deafening argument. What remains is an uncompromising vision, a rejection of the synthetic gloss of traditional filmmaking.</div>
+<div class="f-text ru"><span class="f-lang">(RU)</span><br><br>Ее кино — это архитектурная конструкция эмоционального хаоса. Люди выходят из кадра, камера задерживается на пустом дверном проеме. За оглушительным спором следует глубокая тишина. Остается бескомпромиссное видение...</div>
+<div class="f-lang" style="margin-top:25px">(NOTE)</div>
+<div class="f-text" style="font-weight:700;font-size:.95rem;text-transform:uppercase">Replacing it with something raw, irritating, yet undeniably alive. A cinematic organism that breathes on its own terms.</div>
+</div>
+<img src="https://picsum.photos/300/400?random=32" class="f-block f-img pos-4" alt="Frame Astratto">
+<div class="f-block f-new-text pos-5">
+<div class="f-lang">(EN)</div>
+<div class="f-text">Her cinema is an architectural construct of emotional chaos. People walk out of frame, line the camera lingers on an empty doorway. A profound silence follows a deafening argument. What remains is an uncompromising vision, a rejection of the synthetic gloss of traditional filmmaking.</div>
+<div class="f-text ru"><span class="f-lang">(RU)</span><br><br>Ее кино — это архитектурная конструкция эмоционального хаоса. Люди выходят из кадра, камера задерживается на пустом дверном проеме. За оглушительным спором следует глубокая тишина. Остается бескомпромиссное видение...</div>
+<div class="f-lang" style="margin-top:25px">(NOTE)</div>
+<div class="f-text" style="font-weight:700;font-size:.95rem;text-transform:uppercase">Replacing it with something raw, irritating, yet undeniably alive. A cinematic organism that breathes on own terms.</div>
+</div>
+<img src="https://picsum.photos/450/300?random=33" class="f-block f-img pos-6" alt="Frame Astratto">
+<div class="f-block f-new-text pos-7">
+<div class="f-lang">(EN)</div>
+<div class="f-text">Her cinema is an architectural construct of emotional chaos. People walk out of frame, line the camera lingers on an empty doorway. A profound silence follows a deafening argument. What remains is an uncompromising vision, a rejection of the synthetic gloss of traditional filmmaking.</div>
+<div class="f-text ru"><span class="f-lang">(RU)</span><br><br>Ее кино — это архитектурная конструкция эмоционального хаоса. Люди выходят из кадра, камера задерживается на пустом дверном проеме. За оглушительным спором следует глубокая тишина. Остается бескомпромиссное видение...</div>
+<div class="f-lang" style="margin-top:25px">(NOTE)</div>
+<div class="f-text" style="font-weight:700;font-size:.95rem;text-transform:uppercase">Replacing it with something raw, irritating, yet undeniably alive. A cinematic organism that breathes on its own terms.</div>
+</div>
+<img src="https://picsum.photos/350/350?random=34" class="f-block f-img pos-8" alt="Frame Astratto">
+<div class="f-block f-new-text pos-9">
+<div class="f-lang">(EN)</div>
+<div class="f-text">Her cinema is an architectural construct of emotional chaos. People walk out of frame, line the camera lingers on an empty doorway. A profound silence follows a deafening argument. What remains is an uncompromising vision, a rejection of the synthetic gloss of traditional filmmaking.</div>
+<div class="f-text ru"><span class="f-lang">(RU)</span><br><br>Ее кино — это архитектурная конструкция эмоционального хаоса. Люди выходят из кадра, камера задерживается на пустом дверном проеме. За оглушительным спором следует глубокая тишина. Остается бескомпромиссное видение...</div>
+<div class="f-lang" style="margin-top:25px">(NOTE)</div>
+<div class="f-text" style="font-weight:700;font-size:.95rem;text-transform:uppercase">Replacing it with something raw, irritating, yet undeniably alive. A cinematic organism that breathes on its own terms.</div>
+</div>
+<img src="https://picsum.photos/450/250?random=35" class="f-block f-img pos-10" alt="Frame Astratto">
+<div class="f-block f-new-text pos-11">
+<div class="f-lang">(EN)</div>
+<div class="f-text">Her cinema is an architectural construct of emotional chaos. People walk out of frame, line the camera lingers on an empty doorway. A profound silence follows a deafening argument. What remains is an uncompromising vision, a rejection of the synthetic gloss of traditional filmmaking.</div>
+<div class="f-text ru"><span class="f-lang">(RU)</span><br><br>Ее кино — это архитектурная конструкция эмоционального хаоса. Люди выходят из кадра, камера задерживается на пустом дверном проеме. За оглушительным спором следует глубокая тишина. Остается бескомпромиссное видение...</div>
+<div class="f-lang" style="margin-top:25px">(NOTE)</div>
+<div class="f-text" style="font-weight:700;font-size:.95rem;text-transform:uppercase">Replacing it with something raw, irritating, yet undeniably alive. A cinematic organism that breathes on its own terms.</div>
+</div>
+<img src="https://picsum.photos/300/450?random=36" class="f-block f-img pos-12" alt="Frame Astratto">
+<div class="f-block f-new-text pos-13">
+<div class="f-lang">(EN)</div>
+<div class="f-text">Her cinema is an architectural construct of emotional chaos. People walk out of frame, line the camera lingers on an empty doorway. A profound silence follows a deafening argument. What remains is an uncompromising vision, a rejection of the synthetic gloss of traditional filmmaking.</div>
+<div class="f-text ru"><span class="f-lang">(RU)</span><br><br>Ее кино — это архитектурная конструкция эмоционального хаоса. Люди выходят из кадра, камера задерживается на пустом дверном проеме. За оглушительным спором следует глубокая тишина. Остается бескомпромиссное видение...</div>
+<div class="f-lang" style="margin-top:25px">(NOTE)</div>
+<div class="f-text" style="font-weight:700;font-size:.95rem;text-transform:uppercase">Replacing it with something raw, irritating, yet undeniably alive. A cinematic organism that breathes on its own terms.</div>
+</div>
+<img src="https://picsum.photos/500/350?random=37" class="f-block f-img pos-14" alt="Frame Astratto">
+<div class="f-block f-new-text pos-15">
+<div class="f-lang">(EN)</div>
+<div class="f-text">Her cinema is an architectural construct of emotional chaos. People walk out of frame, line the camera lingers on an empty doorway. A profound silence follows a deafening argument. What remains is an uncompromising vision, a rejection of the synthetic gloss of traditional filmmaking.</div>
+<div class="f-text ru"><span class="f-lang">(RU)</span><br><br>Ее кино — это архитектурная конструкция эмоционального хаоса. Люди выходят из кадра, камера задерживается на пустом дверном проеме. За оглушительным спором следует глубокая тишина. Остается бескомпромиссное видение...</div>
+<div class="f-lang" style="margin-top:25px">(NOTE)</div>
+<div class="f-text" style="font-weight:700;font-size:.95rem;text-transform:uppercase">Replacing it with something raw, irritating, yet undeniably alive. A cinematic organism that breathes on its own terms.</div>
+</div>
+<img src="https://picsum.photos/350/200?random=38" class="f-block f-img pos-16" alt="Frame Astratto">
+<div class="f-block f-new-text pos-17">
+<div class="f-lang">(EN)</div>
+<div class="f-text">Her cinema is an architectural construct of emotional chaos. People walk out of frame, line the camera lingers on an empty doorway. A profound silence follows a deafening argument. What remains is an uncompromising vision, a rejection of the synthetic gloss of traditional filmmaking.</div>
+<div class="f-text ru"><span class="f-lang">(RU)</span><br><br>Ее кино — это архитектурная конструкция эмоционального хаоса. Люди выходят из кадра, камера задерживается на пустом дверном проеме. За оглушительным спором следует глубокая тишина. Остается бескомпромиссное видение...</div>
+<div class="f-lang" style="margin-top:25px">(NOTE)</div>
+<div class="f-text" style="font-weight:700;font-size:.95rem;text-transform:uppercase">Replacing it with something raw, irritating, yet undeniably alive. A cinematic organism that breathes on its own terms.</div>
+</div>
+<img src="https://picsum.photos/400/400?random=39" class="f-block f-img pos-18" alt="Frame Astratto">
+<footer class="site-footer">
+© 2026 Charasu. All rights reserved.
+</footer>
+</div>
+</section>
+
+<script>
+// Disabilita SVG noise su Safari per evitare blocchi
+const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+if (isSafari) {
+    document.addEventListener("DOMContentLoaded", () => {
+        const noiseLayer = document.getElementById("noise-layer");
+        if (noiseLayer) noiseLayer.style.display = "none";
+    });
+}
+
+// Cursore Personalizzato
+const customCursor = document.getElementById("custom-cursor");
+window.addEventListener("mousemove", (e => { customCursor.style.transform = `translate(${e.clientX-12}px, ${e.clientY-12}px)` }));
+
+// Cache degli elementi per il cambio colore video
+let colorElementsCache = null;
+
+function updateVideoColor() {
+    const e = document.getElementById("video-wrapper");
+    if (!e || !e.classList.contains("shrunk")) return;
+
+    if (!colorElementsCache) {
+        colorElementsCache = Array.from(document.querySelectorAll(".paper-sheet, .fullscreen-sheet, #finale-section"));
+    }
+
+    const t = e.getBoundingClientRect();
+    const n = t.top + t.height / 2;
+    let o = false;
+
+    for (let i = 0; i < colorElementsCache.length; i++) {
+        const rect = colorElementsCache[i].getBoundingClientRect();
+        if (n >= rect.top && n <= rect.bottom) {
+            o = true;
+            break;
+        }
+    }
+
+    const l = document.getElementById("sudden-blackout");
+    if (l && parseFloat(window.getComputedStyle(l).opacity) > .5) {
+        const rect = l.getBoundingClientRect();
+        if (n >= rect.top && n <= rect.bottom) {
+            o = false;
+        }
+    }
+
+    const vidWhite = document.getElementById("vid-white");
+    const vidBlack = document.getElementById("vid-black");
+
+    if (o) {
+        if (vidWhite && vidWhite.classList.contains("active-vid")) {
+            vidWhite.classList.remove("active-vid");
+            vidBlack.classList.add("active-vid");
+        }
+    } else {
+        if (vidBlack && vidBlack.classList.contains("active-vid")) {
+            vidBlack.classList.remove("active-vid");
+            vidWhite.classList.add("active-vid");
+        }
+    }
+}
+
+const navMenu = document.getElementById("nav-menu"), menuOverlay = document.getElementById("menu-overlay");
+navMenu.addEventListener("click", (() => { navMenu.classList.toggle("open"); menuOverlay.classList.toggle("open"); }));
+
+setTimeout((() => { 
+    document.getElementById("video-wrapper").classList.add("shrunk");
+    document.querySelector(".center-title").classList.add("centered"); 
+    document.getElementById("nav-menu").classList.add("visible"); 
+    updateVideoColor(); 
+}), 3000);
+
+setTimeout((() => { 
+    document.body.classList.remove("locked"); 
+}), 5500);
+
+function initPage() {
+    setTimeout((() => window.scrollTo(0, 0)), 10);
+    
+    const giantText = document.querySelector(".giant-text");
+    const timelineTrack = document.getElementById("timeline-track");
+    const morphShape = document.getElementById("morph-shape");
+    const suddenBlackout = document.getElementById("sudden-blackout");
+    const epilogueContainer = document.getElementById("epilogue-container");
+    const whiteShape = document.getElementById("white-shape");
+    const epilogueTextWrapper = document.getElementById("epilogue-text-wrapper");
+    const epilogueTextInner = document.getElementById("epilogue-text-inner");
+    const videoClickLayer = document.getElementById("video-click-layer");
+    const videoWrapper = document.getElementById("video-wrapper");
+
+    if (!giantText || !timelineTrack) return;
+
+    // Scomposizione del testo
+    const textContent = (giantText.textContent || giantText.innerText || "").trim();
+    giantText.textContent = "";
+    for (let i = 0; i < textContent.length; i++) {
+        const span = document.createElement("span");
+        span.textContent = textContent[i];
+        span.style.opacity = "0";
+        giantText.appendChild(span);
+    }
+    
+    const c = giantText.querySelectorAll("span");
+    let g = [];
+    for (let i = 0; i < c.length; i++) g.push(i);
+    for (let i = g.length - 1; i > 0; i--) {
+        const t = Math.floor(Math.random() * (i + 1));
+        [g[i], g[t]] = [g[t], g[i]];
+    }
+
+    let shapeTimer = 0;
+    setInterval(() => {
+        if (epilogueContainer.classList.contains("show")) {
+            shapeTimer = (shapeTimer + 1) % 3;
+            whiteShape.className = "shape-" + shapeTimer;
+        }
+    }, 800);
+
+    videoClickLayer.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (videoWrapper.classList.contains("shrunk")) {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+    });
+
+    // IL MOTORE CENTRALE: Legge a che punto sei sul "binario"
+    function handleNativeScroll() {
+        if (document.body.classList.contains("locked")) return;
+        updateVideoColor();
+        
+        const rect = timelineTrack.getBoundingClientRect();
+        const maxScroll = rect.height - window.innerHeight;
+        let progress = 0;
+        
+        // Calcola da 0 a 1 quanto sei sceso nel #timeline-track
+        if (rect.top <= 0) progress = Math.abs(rect.top) / maxScroll;
+        if (progress > 1) progress = 1;
+        if (rect.top > 0) progress = 0;
+
+        // FASE 1: Le lettere appaiono (tra lo 0% e il 30% della discesa)
+        const letterProgress = Math.min(Math.max(progress / 0.30, 0), 1);
+        const visibleLetters = Math.floor(letterProgress * c.length);
+        for (let i = 0; i < c.length; i++) {
+            c[g[i]].style.opacity = i < visibleLetters ? "1" : "0";
+        }
+
+        // FASE 2: Macchia Nera e Blackout (tra il 30% e il 50% della discesa)
+        const shapeProgress = Math.min(Math.max((progress - 0.30) / 0.20, 0), 1);
+        const maxU = 0.12 * Math.hypot(window.innerWidth, window.innerHeight);
+        const currentU = shapeProgress * maxU;
+        
+        if (currentU > 1) {
+            morphShape.style.opacity = "1";
+            morphShape.style.width = currentU + "px";
+            morphShape.style.height = currentU + "px";
+            morphShape.className = "shape-" + (Math.floor(currentU / 40) % 3) + " is-active";
+            suddenBlackout.style.opacity = shapeProgress.toString();
+        } else {
+            morphShape.style.opacity = "0";
+            suddenBlackout.style.opacity = "0";
+        }
+
+        // FASE 3: Fade in testo epilogo
+        if (progress >= 0.50) epilogueContainer.classList.add("show");
+        else epilogueContainer.classList.remove("show");
+
+        if (progress >= 0.55) epilogueContainer.classList.add("shifted");
+        else epilogueContainer.classList.remove("shifted");
+
+        // FASE 4: Scorrimento del testo dentro il quadrato nero (tra il 60% e il 95%)
+        const textScrollProgress = Math.min(Math.max((progress - 0.60) / 0.35, 0), 1);
+        const maxTextScroll = Math.max(0, epilogueTextInner.scrollHeight - epilogueTextWrapper.clientHeight);
+        epilogueTextInner.style.transform = `translateY(-${textScrollProgress * maxTextScroll}px)`;
+    }
+
+    window.addEventListener('scroll', handleNativeScroll, { passive: true });
+    window.addEventListener('resize', handleNativeScroll, { passive: true });
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initPage);
+} else {
+    initPage();
+}
+</script>
+</body>
+</html>
